@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Import Flatpickr Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Dark mode CSS for calendar -->
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../../images/face.png" type="image/png">
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../../global.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="notion-feature-1.css">
+
+    <title>Umi</title>
+</head>
+<body>
+    <main class="main-container">
+        <!-- POPUP 1 -->
+        <div class="pop-up-window" id="popup1">
+            <h3>commit to your tasks</h3>
+            <div id="task-container">
+                <!--tasks added here dynamically-->
+            </div>
+            <button type="button" onclick="addTask()" id="add-task-button">
+                +
+            </button>
+
+            <button type="button" onclick="showStepPopup()" class="next-button">
+                <!-- Replace with an image of an arrow! -->
+                >
+            </button>
+        </div>
+
+        <!-- POPUP 2 -->
+        <div class="pop-up-window" id="popup2">
+            <h3>how will you complete these tasks</h3>
+            <div id="step-list">
+                
+            </div>
+
+            <button onclick="togglePopup('popup1')" class="back-button"><</button>
+            <button type="button" onclick="assignDates()" class="next-button">></button>
+        </div>
+        
+        <!-- POPUP 3 -->
+        <div class="pop-up-window" id="popup3">
+            <h3>rearrange your week</h3>
+            <div id="task-rearrange-list">
+                
+            </div>
+            <button onclick="togglePopup('popup2')" class="back-button"><</button>
+            <button type="button" onclick="confirmRearrangement()" class="next-button">></button> 
+        </div>
+    
+        <!-- POPUP 4 -->
+        <div class="pop-up-window" id="popup4">
+            <h3>are you satisfied</h3>
+            <div id="emote-container">
+                <img src="../../../images/emotes/sad-emote.png" alt="sad-emote">
+                <img src="../../../images/emotes/neutral-emote.png" alt="neutral-emote">
+                <button type="button" id="submitTask">
+                    <img src="../../../images/emotes/happy-emote.png" alt="happy-emote">
+                </button>
+            </div>
+            <button onclick="togglePopup('popup3')" class="back-button"><</button>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="flatpickr-cal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="notion-feature-1.js"></script>
+    <!-- Flatpickr JS -->
+</body>
+</html>

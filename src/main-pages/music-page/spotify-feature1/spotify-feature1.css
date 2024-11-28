@@ -1,0 +1,258 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; /* Spotify-like font */
+}
+
+/* Body Styling */
+/* Center-align Buttons and Content */
+body {
+  background: #0f0f0f; /* Dark Spotify-like background */
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  position: relative;
+  padding-bottom: 100px; /* Space for scrolling content */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center align horizontally */
+  justify-content: flex-start; /* Start from the top */
+  min-height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+/* Header Styling */
+h1 {
+  font-size: 3.5rem;
+  color: #1ed760; /* Spotify green */
+  text-shadow: 
+    0 0 5px #1ed760, 
+    0 0 10px #1ed760, 
+    0 0 15px #14532d, 
+    0 0 20px #14532d;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif; /* Spotify official style */
+  font-weight: 700; /* Bold font for emphasis */
+  animation: subtle-glow 2s infinite alternate;
+}
+
+/* Button Container */
+#button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between buttons */
+  align-items: center; /* Center buttons horizontally */
+}
+
+/* Button Styling */
+button {
+  background-color: #1db954;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; /* Semi-bold for button text */
+}
+
+button:hover {
+  background-color: #1ed760; /* Brighter green on hover */
+  transform: scale(1.1);
+}
+
+button:disabled {
+  background-color: #404040;
+  cursor: not-allowed;
+}
+
+/* Subtle Glowing Animation */
+@keyframes subtle-glow {
+  0% {
+    text-shadow: 
+      0 0 5px #1ed760, 
+      0 0 10px #1ed760, 
+      0 0 15px #14532d, 
+      0 0 20px #14532d;
+  }
+  100% {
+    text-shadow: 
+      0 0 5px #1ed760, 
+      0 0 15px #1ed760, 
+      0 0 25px #14532d, 
+      0 0 30px #14532d;
+  }
+}
+
+/* Now Playing Section */
+#now-playing-container {
+  margin-top: 30px;
+}
+
+#now-playing-info {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#album-art {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#song-title {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+#artist-name {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+/* Playlists Section */
+#playlists-container {
+  margin-top: 30px;
+}
+
+#playlists {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+#playlists > div {
+  background-color: #222;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+/* Frequency Bars Container */
+#frequency-bars {
+  position: fixed; /* Fix position for smooth scrolling */
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover full width */
+  height: 100%; /* Cover full height */
+  display: flex;
+  align-items: flex-end; /* Align bars to the bottom */
+  justify-content: space-between; /* Distribute bars evenly across the width */
+  z-index: -1; /* Push behind content */
+  opacity: 0.6; /* Make translucent */
+  gap: 2px; /* Add small spacing between bars */
+}
+
+.bar {
+  width: 1%; /* Reduced width for more bars */
+  height: 60%; /* Initial height of the bars */
+  background: linear-gradient(180deg, #1db954, #1ed760, #1db954); /* Spotify green gradient */
+  border-radius: 3px; /* Smooth edges */
+  animation: wave 3s infinite ease-in-out; /* Add wave animation */
+  transform-origin: bottom center; /* Wave starts from the bottom */
+}
+
+/* Create a perfectly synchronized wave effect */
+.bar:nth-child(n) {
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* Wave Animation */
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+#spotify-player {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.control-button {
+  background: linear-gradient(145deg, #1db954, #1ed760); /* Gradient Spotify colors */
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Fully round buttons */
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), inset 0 -4px 6px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.control-button img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0px 0px 2px #ffffff); /* Subtle glow for icons */
+  transition: filter 0.3s ease;
+}
+
+.control-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 -6px 8px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(145deg, #1ed760, #5dc481); /* Slightly reversed gradient on hover */
+}
+
+.control-button:hover img {
+  filter: drop-shadow(0px 0px 4px #262c28); /* Glowing green effect on hover */
+}
+
+.control-button:active {
+  transform: scale(0.9);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), inset 0 -3px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* Progress Bar Container */
+.progress-bar-container {
+  position: relative;
+  width: 90%; /* Fit screen better */
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px; /* Round edges for bar */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #1db954, #1ed760);
+  border-radius: 6px;
+  transition: width 0.2s linear;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+}

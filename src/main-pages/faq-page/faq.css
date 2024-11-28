@@ -1,0 +1,169 @@
+html {
+    font-family: "Outfit", sans-serif;
+    font-style: normal;
+
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--off-black);
+}
+
+body {
+    background-color: black;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--off-black);
+}
+
+a:hover {
+    color: var(--color-blue-medium);
+}
+
+.active {
+    color: var(--color-blue-medium);
+}
+
+main {
+    padding-bottom: 20%;
+}
+
+/* Search Bar */
+h1 {
+    padding-top: 100px;
+    text-align: center;
+    color: var(--off-white);
+    font-weight: 200;
+}
+
+.search-bar input{
+    width: 400px;
+    padding: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    border-style: none;
+}
+
+/* Question Boxes */
+.faq-container {
+    width: 50%; /* Adjust this to control the overall width */
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically, if in a flex context */
+}
+
+.question-container {
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-wrap: wrap; /* Wraps items to create a 2x3 grid effect */
+    gap: 10px;
+    justify-content: center; /* Centers items within the flex container */
+}
+
+.question-container p {
+    background-color: var(--off-white);
+    padding: 50px;
+    border-radius: 30px;
+}
+
+#email {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--off-white);
+}
+
+#email textarea {
+    border-radius: 10px;
+}
+
+#email button {
+    border-style: none;
+    border-radius: 5px;
+    background-color: var(--light-gray);
+    color: var(--off-black);
+    padding: 10px;
+}
+
+#email button:hover {
+    background-color: var(--gray);
+    color: var(--off-white);
+    cursor: pointer;
+}
+
+#email h2 {
+    font-weight: 200;
+    margin-top: 10rem;
+}
+
+/* Footer */
+#privacy-policy h3 {
+    padding: 0;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left:0;
+}
+
+#privacy-policy p {
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left:0;
+}
+
+#footer-center h3 {
+    text-align: center;
+    padding: 0;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    margin-right: 0;
+    margin-left: 400px;
+}
+
+#footer-center p {
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left:400px;
+}
+
+#creators h3 {
+    color: var(--off-black);
+    padding: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 350px;
+}
+
+#creators p {
+    color: var(--off-black);
+    padding: 0;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-right: 0;
+    margin-left: 350px;
+}
+
+#creators {
+    margin-bottom: 20px;
+    color: var(--gray);
+}

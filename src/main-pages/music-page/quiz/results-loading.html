@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umi</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/face.png" type="image/png">
+
+    <!-- Navigation Bar CSS -->
+    <link rel="stylesheet" href="/src/navBar.css">
+
+    <!-- Global CSS Page -->
+    <link rel="stylesheet" href="/src/global.css">
+
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="results-loading.css">
+    <link rel="stylesheet" href="var-blue.css">
+</head>
+<body>
+    <main>
+        <figure>
+            <img src="/src/images/mascot-transparent-blue.png" id="mascot-transparent" alt="mascot-transparent">
+        </figure>
+        <section id="main-container">
+            <section id="content-container">
+                <p>calculating<br>your study<br>persona...</p> 
+                <div id="loading-bar-container">
+                    <div id="loading-bar"></div>
+                </div>
+            </section>
+    </main>
+    <script>
+        /* 
+        =========================
+            Loading Container
+        =========================
+        */
+        const bar = document.querySelector('#loading-bar');
+
+        let initialProgress = 0;
+
+        function load() {
+            if (initialProgress < 100) {
+                initialProgress += 1;
+                bar.style.width = initialProgress + '%';
+            } else {
+                clearInterval(loadingInterval);
+                window.location.href = 'results.html';
+            }
+        }
+
+        const loadingInterval = setInterval(load, 20);
+    </script>
+</body>
+</html>

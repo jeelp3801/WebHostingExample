@@ -1,0 +1,55 @@
+body {
+    font-family: "Outfit", sans-serif;
+    font-style: normal;
+
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a:hover {
+    color: var(--color-blue-medium);
+}
+
+.active {
+    color: var(--color-blue-medium);
+}
+
+body {
+    margin-top: 15rem;
+    color: var(--off-black);
+    background-color: var(--dark-gray);
+}
+
+.umi-music {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--off-white);
+}
+
+.umi-music button {
+    height: 3rem;
+    width: 15rem;
+
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+
+    background-color: black;
+    color: var(--light-gray);
+}
+
+.umi-music button:hover {
+    background-color: var(--off-black);
+    color: var(--gray);
+    cursor: pointer;
+}

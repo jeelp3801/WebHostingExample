@@ -1,0 +1,28 @@
+/* Navigation Bar */
+nav ul {
+    position: fixed;
+    display: flex;
+    justify-content:space-evenly;
+
+    top:0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    color: var(--off-white);
+    background-color: var(--off-black);
+}
+
+nav li {
+    list-style-type: none;
+}
+
+nav li a {
+    display: block;
+    text-decoration: none;
+    flex-wrap: nowrap;
+
+    padding: 24px 26px;
+
+    color: var(--off-white);
+}

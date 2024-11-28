@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Playback</title>
+    <link rel="stylesheet" href="spotify-feature1.css">
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+
+</head>
+<body>
+    <div id="frequency-bars">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        
+        
+        
+    </div>
+
+
+    <h1>Spotify Playback</h1>
+
+    <!-- Login Button -->
+    <div id="login-section" style="margin-bottom: 20px;">
+        <button id="login-button">Login to Spotify</button>
+    </div>
+
+    <!-- Now Playing Section -->
+    <div id="now-playing-container" style="margin-top: 20px;">
+        <button id="toggle-now-playing">Show Now Playing</button>
+        <div id="now-playing-info" style="display: none;">
+            <img id="album-art" src="" alt="Album Art" style="width: 200px; height: 200px; border-radius: 10px;">
+            <div>
+                <h3 id="song-title">Title</h3>
+                <p id="artist-name">Artist</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Playlists Section -->
+    <div id="playlists-container" style="margin-top: 20px;">
+        <h2>Your Playlists</h2>
+        <button id="fetch-playlists-button">Fetch My Playlists</button>
+        <div id="playlists"></div>
+    </div>
+
+    <!-- can be added or not -->
+    <!-- Playback Controls -->
+
+    <!-- <div id="controls-container" style="margin-top: 20px;">
+        <button id="next-song-button">Next Song</button>
+    </div> -->
+
+    <div id="spotify-player">
+        <div id="controls">
+            <button id="previous-button" class="control-button" aria-label="Previous Song">
+                <img src="https://img.icons8.com/ios-glyphs/50/ffffff/rewind.png" alt="Previous">
+            </button>
+            <button id="play-pause-button" class="control-button" aria-label="Play/Pause">
+                <img id="play-icon" src="https://img.icons8.com/ios-glyphs/50/ffffff/play--v1.png" alt="Play">
+                <img id="pause-icon" src="https://img.icons8.com/ios-glyphs/50/ffffff/pause--v1.png" alt="Pause" style="display: none;">
+            </button>
+            <button id="next-song-button" class="control-button" aria-label="Next Song">
+                <img src="https://img.icons8.com/ios-glyphs/50/ffffff/fast-forward.png" alt="Next">
+            </button>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="progress-labels">
+            <span id="current-time">0:00</span>
+            <span id="duration-time">0:00</span>
+        </div>
+    </div>
+    
+    
+
+    <script src="spotify-feature1.js"></script>
+    
+</body>
+</html>

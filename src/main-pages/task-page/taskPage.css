@@ -1,0 +1,419 @@
+body {
+    font-family: "Outfit", sans-serif;
+    font-style: normal;
+
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+
+    margin-top: 10vh;
+    color: var(--off-white);
+    background-color: var(--dark-gray);
+}
+
+a:hover {
+    color: var(--color-blue-medium);
+}
+
+.active {
+    color: var(--color-blue-medium);
+}
+
+/* Main */
+
+main {
+    display: block;
+    margin-left: 10rem;
+}
+
+#greeting {
+    margin-left: 5em;
+    margin-bottom: 2em;
+    font-size: x-large;
+}
+
+.activity-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.task-format-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Block Line Separator */
+    border-left: 1rem solid #000000;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 1rem;
+
+    background-color: var(--off-black);
+}
+
+.task-container{
+    display: flex;
+    justify-content: center;
+
+    width: 20vw;
+    height: 40vh;
+
+    border-radius: 20px;
+    align-items: center;
+    margin-top: 10vh;
+    
+    gap: 10px;
+
+    color: var(--light-gray);
+}
+
+.task-container h4 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.task-container * {
+    color: var(--off-white);
+    text-align: center;
+}
+
+button {
+    /* Change mouse for hover clarity */
+    cursor: pointer;
+}
+
+.task-days {
+    text-align: center;
+    font-weight: 100;
+    font-size: large;
+}
+
+.task {
+    width: 50vw;
+    height: 60vh;
+
+    margin-top: 10rem;
+}
+
+.task-button {
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1/1;
+
+    border-style: none;
+    border-radius: 5px;
+
+    font-size: xx-large;
+
+    background-color: transparent;
+    color: var(--off-white);
+}
+
+.task-button:hover{
+    color: var(--gray);
+}
+
+.popup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.popup-buttons img{
+    width: 2em;
+    height: 2em;
+    object-fit: contain;
+}
+
+.popup-buttons button:hover {
+    background-color: var(--off-black);
+}
+
+.popup-buttons button{
+    width: 4em;
+    height: 4em;
+    aspect-ratio: 1/1;
+    z-index: 1000;
+
+    border-style: none;
+    border-radius: 90px;
+
+    font-size: small;
+
+    background-color: black;
+    color: var(--off-white);
+}
+
+#monday-popup, #tuesday-popup, #wednesday-popup, #thursday-popup, 
+#friday-popup, #saturday-popup, #sunday-popup {
+    display: none;
+}
+
+.day-popup .task-item {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.task-list, .timer {
+    max-width: 80rem;
+    height: 60vh;
+
+    border-left: 1rem solid #000000;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 1rem;
+    color: var(--off-white);
+    background-color: var(--off-black);
+
+    margin-right: 10rem;
+
+    align-items: center;
+    display: flex;
+}
+
+.task-list {
+    overflow: auto;
+}
+
+/* Cancel button for popups */
+.close {
+    color: var(--gray);
+    cursor: pointer;
+}
+
+/* Task item flexbox for the 'delete' tasks */
+#delete-popup {
+    color: var(--off-black);
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.task-item span {
+    margin-left: 3em;
+    flex-grow: 1;
+}
+
+.task-item button {
+    margin-left: 60px;
+
+    border-color: var(--gray);
+    border-style: solid;
+    border-radius: 4px;
+    background-color: transparent;
+    color: darkred;
+}
+
+.task-item button:hover {
+    background-color: rgb(229, 180, 180);
+    border-color: darkred;
+}
+
+
+/* #timer {
+    width: 25vw;
+    height: 20vh;
+
+    border-radius: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: var(--gray);
+} */
+
+.slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#main-section {
+    width: 50vw;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#flip-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flip-button {
+    width: 4em;
+    height: 4em;
+    aspect-ratio: 1/1;
+    z-index: 1000;
+
+    border-style: none;
+    border-radius: 90px;
+
+    font-size: small;
+
+    background-color: black;
+    color: var(--off-white);
+}
+
+.flip-button:hover {
+    background-color: var(--off-black);
+}
+
+.flip-button img{
+    width: 2em;
+    height: 2em;
+    object-fit: contain;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 200%;
+}
+
+.slide {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+#all-tasks ul{
+    list-style: disc;
+    max-height: 100%;
+    cursor: n-resize;
+}
+
+#all-tasks li {
+    color: var(--light-gray);
+    font-weight: 200;
+}
+
+/* popups */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+  }
+
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Edit tasks popup */
+#edit-popup button{
+    width: 100px;
+    height: 30px;
+    aspect-ratio: 1/1;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 5px;
+    border-style: none;
+
+    font-size: small;
+
+    background-color: var(--off-white);
+    color: var(--gray);
+}
+
+#edit-popup button:hover{
+    background-color: var(--gray);
+    color: var(--dark-gray);
+}
+
+#taskList {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    margin-left: 5em;
+}
+
+#taskList .task {
+    /* stacking inputs */
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center; 
+    
+    width: 200px;
+    height: 350px;
+    /* prevent dimension alteration */
+    flex-shrink: 0;
+    
+    box-sizing: border-box;
+    padding: 20px;
+
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: 0px 5px rgba(141, 141, 141, 0.5);
+
+    margin: 10px;
+
+    text-align: center;
+    overflow: hidden;
+
+    background-color: var(--light-gray);
+}
+
+/* lol */
+.pomodoro-button {
+    height: 2rem;
+    width: 7rem;
+
+    border-radius: 10px;
+    border-style: none;
+    background-color: #000000;
+    color: var(--off-white);
+}
+
+.pomodoro-button:hover {
+    background-color: var(--gray);
+    color: var(--light-gray);
+}

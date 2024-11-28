@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umi</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/face.png" type="image/png">
+
+    <!-- Navigation Bar CSS -->
+    <link rel="stylesheet" href="/src/navBar.css">
+
+    <!-- Global CSS Page -->
+    <link rel="stylesheet" href="/src/global.css">
+
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="var-yellow.css">
+</head>
+<body>
+    <main>
+        <section id="main-container">
+            <figure>
+                <img src="/src/images/mascot-transparent-yellow.png" id="mascot-transparent" alt="mascot-transparent">
+            </figure>
+            <section id="question-container">
+                <div id="prompt" class="content">
+                    <p>What’s your favorite type of concert experience?</p>
+                </div>
+                <div id="answer-container" class="content">
+                    <button class="answer" onclick="goToPage('question-4.html')">
+                        <p>Massive festivals! 🎊</p>
+                    </button>
+                    <button class="answer" onclick="goToPage('question-4.html')">
+                        <p>Live acoustic performance 🎤</p>
+                    </button>
+                    <button class="answer" onclick="goToPage('question-4.html')">
+                        <p>Engaging musicals 🎶</p>
+                    </button>
+                    <button class="answer" onclick="goToPage('question-4.html')">
+                        <p>Circus show 🤡</p>
+                    </button>
+                </div>
+                <div id="next" class="content">
+                    <button id="next-button">
+                        next
+                    </button>
+                </div>
+            </section>
+    
+            <section id="scenes-container">
+                <button class="scenes" onclick="goToPage('question-1.html')">
+                    1
+                </button>
+                <button class="scenes" onclick="goToPage('question-2.html')">
+                    2
+                </button>
+                <button class="scenes" onclick="goToPage('question-3.html')">
+                    3
+                </button>
+                <button class="scenes" onclick="goToPage('question-4.html')">
+                    4
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="quiz.js"></script>
+</body>
+</html>

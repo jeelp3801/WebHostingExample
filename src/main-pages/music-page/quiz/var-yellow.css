@@ -1,0 +1,75 @@
+body {
+    /* gradient background */
+    background: rgb(251,185,20);
+    background: -moz-linear-gradient(180deg, rgba(251,185,20,1) 0%, rgba(255,214,112,1) 61%, rgba(255,240,203,1) 97%);
+    background: -webkit-linear-gradient(180deg, rgba(251,185,20,1) 0%, rgba(255,214,112,1) 61%, rgba(255,240,203,1) 97%);
+    background: linear-gradient(180deg, rgba(251,185,20,1) 0%, rgba(255,214,112,1) 61%, rgba(255,240,203,1) 97%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fbb914",endColorstr="#fff0cb",GradientType=1);
+}
+
+/* 
+=========================
+    Question Container
+=========================
+ */
+#question-container {
+    /* colour styling */
+    background-color: #FFF0C9;
+    box-shadow: 15px 15px 7px #dea412;
+}
+
+#question-container button:hover {
+    background-color: #FCBB1A;
+    color: #bc8c10;
+}
+
+#prompt {
+    /* colour styling */
+    background-color: #FCBB1A;
+    color: #FFF0C9;
+    box-shadow: 5px 5px 5px #e0a612;
+
+    border-color: #FFDA7D;
+}
+
+/* 
+=========================
+    Answer Container
+=========================
+ */
+ #answer-container {
+    background-color: #FFDA7D;
+    box-shadow: 5px 5px 5px #e0a612;
+    border-color: #FBBA18;
+}
+
+.answer {
+    background-color: #FFCA44;
+    color: #e0a612;
+}
+
+#next-button {
+    background-color: #FFCA44;
+    color: #e0a612;
+    box-shadow: 2px 2px 5px #bc8c10;
+}
+
+/* 
+=========================
+    Scenes Container
+=========================
+ */
+
+#scenes-container {
+    background-color: #FFF0C9;
+}
+
+.scenes {
+    background-color: #FFFFFF;
+    color: #FFF0C9;
+}
+
+.scenes:hover {
+    background-color: #FFDA7D;
+    color: #e0a612;
+}

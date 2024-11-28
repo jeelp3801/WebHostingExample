@@ -1,0 +1,78 @@
+body {
+    /* gradient background */
+    background: rgb(130,83,127);
+    background: -moz-linear-gradient(180deg, rgba(130,83,127,1) 0%, rgba(192,158,190,1) 72%, rgba(239,231,239,1) 97%);
+    background: -webkit-linear-gradient(180deg, rgba(130,83,127,1) 0%, rgba(192,158,190,1) 72%, rgba(239,231,239,1) 97%);
+    background: linear-gradient(180deg, rgba(130,83,127,1) 0%, rgba(192,158,190,1) 72%, rgba(239,231,239,1) 97%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#82537f",endColorstr="#efe7ef",GradientType=1);
+}
+
+#main-container {
+    color: var(--off-white);
+}
+
+/* 
+=========================
+    Question Container
+=========================
+ */
+#question-container {
+    /* colour styling */
+    background-color: #F3EDF3;
+    box-shadow: 15px 15px 7px #74516e;
+}
+
+#question-container button:hover {
+    background-color: var(--color-purple-medium);
+}
+
+#prompt {
+    /* colour styling */
+    background-color: var(--color-purple-dark);
+    color: #F3EDF3;
+    box-shadow: 5px 5px 5px #795273;
+
+    border-color: var(--color-purple-light);
+}
+
+/* 
+=========================
+    Answer Container
+=========================
+ */
+ #answer-container {
+    background-color: #D6B8D4;
+    box-shadow: 5px 5px 5px #c4b1c1;
+    border-color: #BB8BB8;
+}
+
+.answer {
+    background-color: #C09EBE;
+    color: #e0d2e0;
+}
+
+#next-button {
+    background-color: #C09EBE;
+    color: #e0d2e0;
+    box-shadow: 2px 2px 5px #826a7d;
+}
+
+/* 
+=========================
+    Scenes Container
+=========================
+ */
+
+#scenes-container {
+    background-color: #F3EDF3;
+}
+
+.scenes {
+    background-color: #FFFFFF;
+    color: #e0d2e0;
+}
+
+.scenes:hover {
+    background-color: #c8b1c8;
+    color: #ab8bab;
+}

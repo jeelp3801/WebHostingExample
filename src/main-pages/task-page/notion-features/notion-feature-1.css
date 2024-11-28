@@ -1,0 +1,211 @@
+/* Default CSS for Pages */
+/* ========================================== */
+html {
+    font-family: "Outfit", sans-serif;
+    font-style: normal;
+    /* font-size: 16em; */
+
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+body {
+    color: var(--off-black);
+    background-color: var(--off-black);
+}
+
+/* Main Components */
+
+main {
+    width: 90vw;
+    height: 90vh;
+
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    display: block;
+
+    background-color: var(--off-white);
+}
+
+h3 {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+/* Popup Windows */
+/* ========================================== */
+.main-container {
+    position: relative;
+}
+
+#cancel-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border-style: none;
+    font-size: xx-large;
+
+    margin: 40px;
+}
+
+.next-button {
+    /* Position the button on the bottom right */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    border-style: none;
+    font-size: xx-large;
+
+    margin: 40px;
+}
+
+.back-button{
+        /* Position the button on the bottom left */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    
+        border-style: none;
+        font-size: xx-large;
+    
+        margin: 40px;
+}
+
+#task-container {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#task-container > textarea{
+    height: 100px;
+    width: 100px;
+
+    padding-top: 50px;
+    padding-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: 0px 5px rgba(141, 141, 141, 0.5);
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    text-align: center;
+    overflow: hidden; 
+    resize: none;
+
+    background-color: white;
+}
+
+.popup-window {
+    display: none;    
+}
+
+#popup1{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.next-button, .back-button, #add-task-button {
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-style: none;
+    border-radius: 5px;
+
+    background-color: var(--dark-gray);
+    color: var(--off-white);
+}
+
+.next-button:hover, .back-button:hover, #add-task-button:hover {
+    background-color: black;
+}
+
+/* Popup 2 */
+.task-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+
+    width: 100px;
+    
+    padding-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    border-radius: 10px;
+    box-shadow: 0px 5px rgba(141, 141, 141, 0.5);
+
+    text-align: center;
+    overflow: hidden; 
+    resize: none;
+
+    background-color: white;
+}
+
+#step-list {
+    display: flex;
+    align-items: center;
+}
+
+/* popup3 */
+#task-rearrange-list {
+    display: flex;
+    align-items: center;
+}
+
+.task-item {
+    width: 200px;
+    
+    padding-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    border-radius: 10px;
+    box-shadow: 0px 5px rgba(141, 141, 141, 0.5);
+
+    text-align: center;
+    overflow: hidden; 
+    resize: none;
+
+    background-color: white;
+}
+
+/* Popup 4 */
+#emote-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+#emote-container button {
+    border-style: none;
+}
+#popup2, #popup3, #popup4 {
+    display: none;
+}

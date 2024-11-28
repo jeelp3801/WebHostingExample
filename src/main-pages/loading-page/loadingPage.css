@@ -1,0 +1,49 @@
+html {
+    font-family: "Outfit", sans-serif;
+    font-style: normal;
+    /* font-size: 16em; */
+
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+body {
+    color: var(--off-black);
+    background-color: var(--off-white);
+}
+
+#mascot {
+    width: 140%;
+    height: auto;
+    transform: rotate(10deg);
+}
+
+#container {
+    /* Center in all directions */
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td {
+    text-align: end;
+}
+
+td h1 {
+    font-size: 10vw;
+    /* Remove margins */
+    margin: 0 auto; 
+}
+
+td h3 {
+    font-size: 3vw;
+    font-weight: 100;
+    margin: 0 auto;
+
+}

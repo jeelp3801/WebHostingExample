@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'positions';
+    font-style: normal;
+    src: url('/src/fonts/positions.otf') format('opentype');
+}
+
+body {
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* 
+=========================
+    Main Container
+=========================
+ */
+
+#mascot-transparent {
+    position: absolute;
+    bottom: -7rem;
+    left: -7rem;
+    z-index: -1;
+} 
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+/* 
+=========================
+    Content Container
+=========================
+ */
+#content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* dimensions */
+    height: 54rem;
+    width: 42rem;
+
+    border-radius: 120px;
+}
+
+#content-container p {
+    margin-top: 10rem;
+    
+    font-family: 'positions';
+    font-size: 6rem;
+    
+    text-align: center;
+}
+
+#loading-bar-container {
+    overflow: hidden;
+
+    /* dimensions */
+    width: 70%;
+    border-radius: 2rem;
+}
+
+#loading-bar {
+    /* dimensions */
+    width: 0%;
+    height: 5rem;
+    border-radius: 2rem;
+
+    /* animation */
+    transition: width 0.2s ease;
+}

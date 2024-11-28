@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umi</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/face.png" type="image/png">
+
+    <!-- Navigation Bar CSS -->
+    <link rel="stylesheet" href="/src/navBar.css">
+
+    <!-- Global CSS Page -->
+    <link rel="stylesheet" href="/src/global.css">
+
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="results.css">
+</head>
+<body>
+    <main>
+        <section id="main-container">
+            <figure>
+                <img src="/src/images/mascot-transparent-blue.png" id="mascot-transparent" alt="mascot-transparent">
+            </figure>
+            <section id="results-container">
+                <div id="result-name">
+                    <!-- name of persona goes here -->
+                    <p>Universal Listener</p>
+                </div>
+                <div id="playlist-cover">
+                    <!-- playlist cover art goes here -->
+                     <img src="/src/images/mascot-combined2.png">
+                </div>
+                <div id="info-container">
+                    <div id="genres-container">
+                        <!-- genre names -->
+                        <div class="genre">Classical</div>
+                        <div class="genre">Pop</div>
+                        <div class="genre">Country</div>
+                    </div>
+                    <div id="about-you">
+                        You have a diverse taste in music! People always come
+                        to you for reccomendations since you seem to listen to 
+                        it all!
+                    </div>
+                </div>
+            </section>
+    
+            <section id="options-container">
+                <button class="option" onclick="goToPage('question-1.html')">
+                    try<br>again
+                </button>
+                <button class="option">
+                    <a href="/src/landing-page/home.html">go<br>home</a>
+                </button>
+                <button class="option" id="save-button">
+                    save image
+                </button>
+                <button class="option">
+                    <a href="/src/redirect/redirect.html">add to spotify library</a>
+                </div>
+            </section>
+        </section>
+    </main>
+    <!-- adding the html2canvas library to export the results div -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+        document.getElementById('save-button').addEventListener('click', function () {
+            const result = document.getElementById('results-container');
+            html2canvas(result).then(canvas => {
+                const image = canvas.toDataURL('image/png');
+
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'result.png';
+                link.style.display = 'none';
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+    <script src="quiz.js"></script>
+</body>
+</html>

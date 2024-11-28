@@ -1,0 +1,36 @@
+:root {
+    /* Colour Palette */
+    --off-black: #222222;
+    --dark-gray: #3E3E3E;
+    --gray: #7A7A7A;
+    --light-gray: #D5D5D5;
+    --off-white: #F0F0F0;
+}
+
+:root {
+    /* Purple shades */
+    --color-purple-dark: #8a5580;
+    --color-purple-medium: #b18da3;
+    --color-purple-light: #d2b9cb;
+  
+    /* Green shades */
+    --color-green-dark: #2a6d5b;
+    --color-green-medium: #4c947a;
+    --color-green-light: #a9e3cf;
+  
+    /* Yellow shades */
+    --color-yellow-dark: #e4b034;
+    --color-yellow-medium: #f0cf6c;
+    --color-yellow-light: #f9ecc2;
+  
+    /* Red shades */
+    --color-red-dark: #7a1f1f;
+    --color-red-medium: #c05a5a;
+    --color-red-light: #e6a6a6;
+  
+    /* Blue shades */
+    --color-blue-dark: #4c86a8;
+    --color-blue-medium: #82c9f1;
+    --color-blue-light: #d6f4ff;
+  }
+  

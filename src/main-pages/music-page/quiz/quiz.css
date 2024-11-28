@@ -1,0 +1,176 @@
+@font-face {
+    font-family: 'positions';
+    font-style: normal;
+    src: url('/src/fonts/positions.otf') format('opentype');
+}
+
+html {
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* 
+=========================
+    Main Container
+=========================
+ */
+
+#mascot-transparent {
+    position: absolute;
+    bottom: -7rem;
+    left: -7rem;
+    z-index: -1;
+} 
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 4rem;
+    height: 100vh;
+}
+
+.content {
+    text-align: center;
+}
+
+/* 
+=========================
+    Question Container
+=========================
+ */
+#question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* dimensions */
+    height: 54rem;
+    width: 42rem;
+
+    border-radius: 120px;
+}
+
+#question-container button:hover {
+    cursor: pointer;
+}
+
+#prompt {
+    /* dimensions */
+    height: 12rem;
+    width: 24rem;
+    
+    border-radius: 10px;
+    border-top: 2rem;
+    border-style: solid none none none;
+    
+    /* spacing */
+    position: relative;
+    top: 3rem;
+    left: 1rem;
+    
+    margin-right: 8rem;
+    z-index: 1;
+
+    font-family: positions;
+    font-size: 2rem;
+}
+
+/* 
+=========================
+    Answer Container
+=========================
+ */
+#answer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* dimensions */
+    height: 33rem;
+    width: 28rem;
+
+    border-radius: 10px;
+    border-top: 3rem;
+    border-style: solid none none none;
+
+    /* spacing */
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+.answer {
+    /* dimensions */
+    height: 5.5rem;
+    width: 24rem;
+
+    border-radius: 10px;
+    border-style: none;
+
+    /* spacing */
+    margin-top: 1.5rem;
+
+    /* font */
+    font-family: positions;
+    font-size: 1.5rem;
+}
+
+#next-button {
+    /* dimensions */
+    height: 3rem;
+    width: 12rem;
+
+    border-radius: 10px;
+    border-style: none;
+
+    /* spacing */
+    margin-top: 1rem;
+
+    /* font */
+    font-family: positions;
+    font-size: 1.5rem;
+}
+
+/* 
+=========================
+    Scenes Container
+=========================
+ */
+
+ #scenes-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    /* dimensions */
+    height: 45rem;
+    width: 12rem;
+
+    border-radius: 20px;
+}
+
+.scenes {
+    /* dimensions */
+    height: 9rem;
+    width: 9rem;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+    border-style: none;
+
+    font-family: positions;
+    font-size: 8rem;
+    font-weight: 500;
+    text-align: center;
+}

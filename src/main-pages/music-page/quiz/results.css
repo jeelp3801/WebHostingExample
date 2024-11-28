@@ -1,0 +1,209 @@
+@font-face {
+    font-family: 'positions';
+    font-style: normal;
+    src: url('/src/fonts/positions.otf') format('opentype');
+}
+
+body {
+    background: rgb(33,146,191);
+    background: -moz-linear-gradient(180deg, rgba(33,146,191,1) 0%, rgba(112,214,255,1) 72%, rgba(229,248,255,1) 97%);
+    background: -webkit-linear-gradient(180deg, rgba(33,146,191,1) 0%, rgba(112,214,255,1) 72%, rgba(229,248,255,1) 97%);
+    background: linear-gradient(180deg, rgba(33,146,191,1) 0%, rgba(112,214,255,1) 72%, rgba(229,248,255,1) 97%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2192bf",endColorstr="#e5f8ff",GradientType=1);
+
+    height: 100vh;  /* 100% of viewport height */
+    width: 100vw;   /* 100% of viewport width */
+    margin: 0;
+
+    /* prevent scrolling */
+    overflow: hidden; 
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'positions';
+    text-align: center;
+}
+
+/* 
+=========================
+    Main Container
+=========================
+ */
+
+#mascot-transparent {
+    position: absolute;
+    bottom: -7rem;
+    left: -7rem;
+    z-index: -1;
+} 
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 4rem;
+    height: 100vh;
+}
+
+/* 
+=========================
+    Results Container
+=========================
+*/
+#results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    /* dimensions */
+    height: 54rem;
+    width: 42rem;
+
+    border-radius: 120px;
+    
+    /* colouring */
+    background-color: #E5F8FF;
+    color: #e0d2e0;
+}
+
+#result-name {
+    margin-top: 4rem;
+}
+
+#result-name p {
+    display: inline;
+    font-size: 6rem;
+    font-family: 'positions';
+
+    color: #2897C4;
+}
+
+/* 
+=========================
+        Playlist
+=========================
+*/
+#playlist-cover {
+    /* dimensions */
+    height: 25rem;
+    width: 25rem;
+
+    border-radius: 60px;
+
+    /* colouring */
+    background-color: #61C9F3;
+}
+
+#playlist-cover img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 
+=========================
+    Info Container
+=========================
+*/
+#info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+/* 
+=========================
+    Genre Container
+=========================
+*/
+#genres-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.genre {
+    /* dimensions */
+    height: 3.5rem;
+    width: 8rem;
+
+    border-radius: 20px;
+
+    /* colouring */
+    background-color: #61C9F3;
+    color: #E2F7FF;
+    font-size: 1.75rem;
+}
+
+/*
+=========================
+    About You Container
+=========================
+*/
+#about-you {
+    /* dimensions */
+    height: 11.5rem;
+    width: 15rem;
+
+    border-radius: 30px;
+
+    background-color: #61C9F3;
+    color: #E2F7FF;
+    font-size: 1.7rem;
+}
+
+/* 
+=========================
+    Options Container
+=========================
+ */
+
+#options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    /* dimensions */
+    height: 45rem;
+    width: 12rem;
+
+    border-radius: 20px;
+
+    /* colouring */
+    background-color: #E2F7FF;
+}
+
+.option {
+    /* dimensions */
+    height: 9rem;
+    width: 9rem;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+    border-style: none;
+
+    font-family: positions;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+
+    /* colouring */
+    background-color: #B7EBFF;
+    color: #3DAAD6;
+}
+
+.option:hover, a:hover{
+    background-color: #3DAAD6;
+    color: #277c9d;
+}
+
+a {
+    color: #3DAAD6;
+    text-decoration: none;
+}
