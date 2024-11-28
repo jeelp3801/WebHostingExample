@@ -98,7 +98,7 @@ async function listCalendarEvents() {
 
 // Serve the index.html file
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html')); // Adjust the path to where your index.html is located
+  res.sendFile(path.join(__dirname, '../landing-page/home.html')); // Adjust the path to where your index.html is located
 });
 
 // Start the server
