@@ -70,7 +70,7 @@ app.get('/callback', async (req, res) => {
         // Store tokens securely (e.g., in a database or session)
         // For simplicity, we send them back to the frontend
         res.redirect(
-            `http://localhost:8888/main-pages/music-page/spotify-feature1/spotify-feature1.html?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
+            `http://localhost:${PORT}/main-pages/music-page/spotify-feature1/spotify-feature1.html?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
     } catch (error) {
         console.error('Error fetching tokens:', error.response?.data || error.message);
