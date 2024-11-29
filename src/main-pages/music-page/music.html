@@ -27,34 +27,27 @@
         <!-- Navigation Bar -->
         <nav>
             <ul>
-                <li><a href="/src/landing-page/home.html" class="active"><strong>Umi</strong></a></li>
-                <li></li>
-                <li></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="../task-page/taskPage.html">Tasks</a></li>
+                <li><a href="../../landing-page/home.html">Home</a></li>
+                <li><a href="music.html" class="active">Music</a></li>
+                <li><a href="../task-page/taskPage.html">Umi</a></li>
                 <li><a href="../faq-page/faq.html">FAQ</a></li>
                 <li><a href="../settings-page/settings.html">Settings</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <div id="main-container">
-            <div id="spotify-buttons">
-                <h1>Umi Music</h1>
-                <button id="spotify-login-button">Sign in with Spotify</button>
-                <button id="now-playing-button" onclick="location.href='spotify-feature1/spotify-feature1.html'">Listen Now</button>
-            </div>
-
             <div class="umi-music">
-                <h1>Persona Quiz!</h1>
                 <div class="thumbnail">
                     <img src="../../images/umi-music-thumbnail.png" alt="thumbnail">
                 </div>
                 <a href="quiz/loadingPage-dark.html">
-                    <button>Curate a playlist persona!</button>
+                    <button>curate a playlist persona!</button>
                 </a>
             </div>
-        </div>
+            <div id="spotify-buttons">
+                <button id="spotify-login-button">login to spotify</button>
+                <button id="now-playing-button" onclick="location.href='spotify-feature1/spotify-feature1.html'">Now Playing</button>
+            </div>
     </main>
 </body>
 </html>

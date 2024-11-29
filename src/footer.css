@@ -1,19 +1,12 @@
-a {
-    text-decoration: none;
-}
-
 .footer-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     background-color: var(--gray);
 }
 
 .footer-content {
     margin-top: 2rem;
-    margin-bottom: 2rem;
-
-    text-align: center;
+    margin-left: 5%;
 }
 
 .footer-content p {
@@ -23,8 +16,7 @@ a {
 #footer-logo img {
     width: 10rem;
     height: 10rem;
-    margin-top: 2rem;
-    margin-left: 2rem;
+    margin-left: 5%;
 }
 
 #content-container {
@@ -38,7 +30,7 @@ a {
     gap: 1rem;
     margin-top: 4rem;
     margin-left: 3rem;
-    margin-right: 5rem;
+    margin-right: 2rem;
 }
 
 .socials-container img {

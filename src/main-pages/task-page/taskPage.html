@@ -27,15 +27,13 @@
             <!-- Navigation Bar -->
             <nav>
                 <ul>
-                    <li><a href="/src/landing-page/home.html" class="active"><strong>Umi</strong></a></li>
-                    <li></li>
-                    <li></li>
+                    <li><a href="../../landing-page/home.html">Home</a></li>
                     <li><a href="../music-page/music.html">Music</a></li>
-                    <li><a href="taskPage.html">Tasks</a></li>
+                    <li><a href="taskPage.html" class="active">Umi</a></li>
                     <li><a href="../faq-page/faq.html">FAQ</a></li>
                     <li><a href="../settings-page/settings.html">Settings</a></li>
                 </ul>
-        </nav>
+            </nav>
         </header>
         <!-- Greeting message -->
         <section id="greeting">
@@ -46,14 +44,14 @@
             <div class="activity-container">
                 <div class="popup-buttons">
                     <h1>tasks<br>for<br>the<br>week.<hr></h1>
-                    <button id="add-task" onclick="location.href='notion-features/notion-feature-1.html'">
-                        <img src="../../images/add.png">
-                    </button>
                     <button onclick="openEditPopup()">
                         <img src="../../images/edit.png">
                     </button>
                     <button onclick="openDeletePopup()">
                         <img src="../../images/remove.png">
+                    </button>
+                    <button id="add-task" onclick="location.href='notion-features/notion-feature-1.html'">
+                        <img src="../../images/add.png">
                     </button>
                     <button id="fetchEvents" onclick="location.href='notion-features/CalendarSync.html'">
                         <img src="../../images/sync.png">
@@ -103,9 +101,6 @@
                     <button class="flip-button" onclick="slideNext()">
                         <img id="toggleImage" src="../../images/pomodoro-icon.png" alt="Toggle Image" style="cursor: pointer;" />
                     </button>
-                    <button class="flip-button" id="spotify-now-playing" onclick="location.href='../music-page/spotify-feature1/spotify-feature1.html'">
-                        <img id="play-arrow" src="../../images/music.png" alt="Play arrow" style="cursor: pointer;"/>
-                    </button>
                 </div>
                 
                 <div class="slider-container">
@@ -120,6 +115,7 @@
                             <div class="slide timer">
                                 <!--pomodoro timer will go here--> 
                                 <div class="container">
+                                    <p>Hi I am a Timer.</p>
                                     <!-- Pomodoro Toggle Buttons -->
                                     <div class="toggle-buttons">
                                       <button id="session-btn" class="active">Focus</button>
@@ -128,8 +124,7 @@
                                     </div>
                                     <!-- Editable Timer -->
                                     <div id="timer" class="editable-timer">
-                                      <span id="minutes" contenteditable="true" class="editable-time">
-                                        25</span>:<span id="seconds" contenteditable="true" class="editable-time">00</span>
+                                      <span id="minutes" contenteditable="true" class="editable-time">25</span>:<span id="seconds" contenteditable="true" class="editable-time">00</span>
                                     </div>
                                     <!-- Controls -->
                                     <div class="controls">

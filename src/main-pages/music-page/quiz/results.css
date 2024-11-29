@@ -65,12 +65,16 @@ body {
     
     /* colouring */
     background-color: #E5F8FF;
-    box-shadow: 15px 15px 7px #1b779b;
     color: #e0d2e0;
 }
 
+#result-name {
+    margin-top: 4rem;
+}
+
 #result-name p {
-    font-size: 4rem;
+    display: inline;
+    font-size: 6rem;
     font-family: 'positions';
 
     color: #2897C4;
@@ -83,8 +87,8 @@ body {
 */
 #playlist-cover {
     /* dimensions */
-    height: 20rem;
-    width: 20rem;
+    height: 25rem;
+    width: 25rem;
 
     border-radius: 60px;
 
@@ -97,7 +101,6 @@ body {
     max-height: 100%;
     object-fit: cover;
     display: block;
-    margin-left: 1.5rem;
 }
 
 /* 
@@ -133,7 +136,7 @@ body {
     /* colouring */
     background-color: #61C9F3;
     color: #E2F7FF;
-    font-size: 1.3rem;
+    font-size: 1.75rem;
 }
 
 /*
@@ -150,7 +153,7 @@ body {
 
     background-color: #61C9F3;
     color: #E2F7FF;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
 }
 
 /* 
@@ -173,7 +176,6 @@ body {
 
     /* colouring */
     background-color: #E2F7FF;
-    box-shadow: 15px 15px 7px #1b779b;
 }
 
 .option {

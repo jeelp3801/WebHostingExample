@@ -155,55 +155,28 @@ app.post("/add-task", async (req, res) => {
     }
 });
 
-// Endpoint to delete (archive) a task and its related steps
-app.patch('/api/tasks/:taskId/archive', async (req, res) => {
-  const { taskId } = req.params;
 
-  try {
-      // Step 1: Fetch the task to get its related steps
-      const taskResponse = await axios.get(
-          `https://api.notion.com/v1/pages/${taskId}`,
-          {
-              headers: {
-                  ...notionHeaders,
-                  'Notion-Version': '2022-06-28',
-              },
-          }
-      );
-
-      const relatedSteps = taskResponse.data.properties["Task Steps"]?.relation || [];
-
-      // Step 2: Archive each related step
-      for (const step of relatedSteps) {
-          await axios.patch(
-              `https://api.notion.com/v1/pages/${step.id}`,
-              { archived: true },
-              {
-                  headers: {
-                      ...notionHeaders,
-                      'Notion-Version': '2022-06-28',
-                  },
-              }
-          );
-      }
-
-      // Step 3: Archive the task itself
-      const taskArchiveResponse = await axios.patch(
-          `https://api.notion.com/v1/pages/${taskId}`,
-          { archived: true },
-          {
-              headers: {
-                  ...notionHeaders,
-                  'Notion-Version': '2022-06-28',
-              },
-          }
-      );
-
-      res.status(200).json({ message: 'Task and related steps archived successfully', data: taskArchiveResponse.data });
-  } catch (error) {
-      console.error('Error archiving task or steps:', error.response?.data || error.message);
-      res.status(500).json({ error: 'Failed to archive task and related steps' });
-  }
+  // end point to delete tasks
+  app.patch('/api/tasks/:taskId/archive', async (req, res) => {
+    const { taskId } = req.params;
+    try {
+        const response = await axios.patch(
+            `https://api.notion.com/v1/pages/${taskId}`,
+            {
+                archived: true, // Archive the page
+            },
+            {
+                headers: {
+                    ...notionHeaders,
+                    'Notion-Version': '2022-06-28',
+                },
+            }
+        );
+        res.status(200).json({ message: 'Task archived successfully', data: response.data });
+    } catch (error) {
+        console.error('Error archiving task:', error.response?.data || error.message);
+        res.status(500).json({ error: 'Failed to archive task' });
+    }
 });
 
 

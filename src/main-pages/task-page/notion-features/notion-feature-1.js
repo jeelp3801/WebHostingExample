@@ -24,42 +24,13 @@ function showRearrangePopup() {
     togglePopup('popup3'); // Show or hide the third popup (rearrange tasks)
 }
 
-function goBackToTaskPage() {
-    const userConfirmed = confirm("Are you sure you want to go back? Unsaved changes may be lost 🥲");
-  
-    if (userConfirmed) {
-    window.location.href = "../taskPage.html";
-  }
-}
-
-
-// Function to validate inputs in Popup 1 before moving to the next
-function validatePopup1() {
-    const taskContainer = document.getElementById("task-container");
-    if (taskContainer.children.length === 0) {
-        alert("Please add at least one task before proceeding.");
-        return false; // Prevent moving to next popup
-    }
-    return true; // Allow moving to next popup
-}
-
-document.querySelector("#popup1 .next-button").addEventListener("click", function(event) {
-    if (!validatePopup1()) {
-        event.preventDefault(); // Prevent the default action (moving to next popup)
-    } else {
-        togglePopup("popup2");
-        displayTasksForStepEntry();
-    }
-});
-
-
 // ===============================================
 // Popup 1 - Functions
 // ===============================================
 
 function addTask() {
     if(tasks.length >= 10) {
-       alert("Oops! You can only add up to 10 tasks 😭");
+       alert("you can only add up to 10 tasks");
        return;
     } 
 
@@ -86,9 +57,13 @@ function showStepPopup() {
         tasks[index].name = textarea.value;
     })
     if(tasks.some(task => !task.name)) {
-        alert("Oops! Please fill in all your tasks 🤓");
+        alert("Please enter at least one task.");
         return;
     }
+
+    document.getElementById('popup1').style.display = 'none';
+    document.getElementById('popup2').style.display = 'block';
+    displayTasksForStepEntry();
 }
 
 function displayTasksForStepEntry() {
@@ -101,7 +76,7 @@ function displayTasksForStepEntry() {
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-section';
         taskDiv.innerHTML = `
-            <h4>${task.name}</h4>
+            <h3>${task.name}</h3>
             <label style="font-weight: 100;">Start Date:</label>
             <input type="text" placeholder="Select Date..." id="start-date-${index}">
             <br>
@@ -137,7 +112,7 @@ function captureInitialTaskData() {
         const endDateInput = document.getElementById(`end-date-${index}`);
         
         if (!startDateInput.value || !endDateInput.value) {
-            alert("Oops! Please enter valid start and end dates for all tasks 🤓");
+            alert("Please enter valid start and end dates for all tasks.");
             hasError = true;
             return;
         }
@@ -154,7 +129,7 @@ function captureInitialTaskData() {
         task.steps = steps;
     });
     if (!hasError) {
-        validatePopup2(); // Proceed to next popup if no errors
+        showRearrangePopup(); // Proceed to next popup if no errors
     }
     console.log("Initial task data captureed:", tasks);
 }
@@ -176,11 +151,6 @@ function assignDates() {
         const startDateInput = document.getElementById(`start-date-${index}`).value;
         const endDateInput = document.getElementById(`end-date-${index}`).value;
 
-        if (!startDateInput || !endDateInput) {
-            alert(`Oops! Please enter both start and end dates for task: ${task.name} 🤓`);
-            return null;
-        }
-
         // Parse the input dates
         const startDate = flatpickr.parseDate(startDateInput, "Y-m-d");
         const endDate = flatpickr.parseDate(endDateInput, "Y-m-d");
@@ -190,43 +160,39 @@ function assignDates() {
         const formattedEndDate = flatpickr.formatDate(endDate, "F j, Y");
 
         if (isNaN(startDate) || isNaN(endDate)) {
-            alert("Oops! Please enter valid start and end dates for each task 🤓");
+            alert("Please enter valid start and end dates for each task.");
             return null;
         }
 
         if (endDate <= startDate) {
-            alert("Oops! Please make your end date after your start date 😵‍💫");
+            alert("The end date must be after the start date.");
             return null;
         }
 
         const steps = Array.from(document.querySelectorAll(`#steps-container-${index} input`))
-            .map(input => ({ description: input.value }));
+                            .map(input => ({ description: input.value }));
 
-        if (steps.length === 0 || steps.some(step => step === "")) {
-            alert(`Oops! Please enter at least one step for task: ${task.name} 🙂‍↕️`);
+        if (steps.length === 0) {
+            alert(`Please enter at least one step for task: ${task.name}`);
             return null;
         }
 
-        if(steps.length === 1) {
-            const midpoint = new Date((startDate.getTime() + endDate.getTime()) / 2);
-            steps[0].date = midpoint.toISOString().split('T')[0];
-            console.log(`Midpoint date assigned for single step: ${steps[0].date}`);
-        } else {
-            const timePerStep = (endDate - startDate) / steps.length;
-            steps.forEach((step, stepIndex) => {
-                // Calculate the step date using UTC to avoid local timezone shifts
-                const stepDate = new Date(startDate.getTime() + timePerStep * stepIndex);
-                step.date = new Date(stepDate.getTime()).toISOString().split('T')[0];
-                console.log('date assigned: ' + stepDate);
-            });
-        }
+       const timePerStep = (endDate - startDate) / steps.length;
+        steps.forEach((step, stepIndex) => {
+            // Calculate the step date using UTC to avoid local timezone shifts
+            const stepDate = new Date(startDate.getTime() + timePerStep * stepIndex);
+            step.date = new Date(stepDate.getTime()).toISOString().split('T')[0];
+            console.log('date assigned: ' + stepDate);
+        });
         
+
         return { name: task.name, startDate: formattedStartDate, endDate: formattedEndDate, steps };
     });
 
     // Filter out any invalid tasks before proceeding
     const validTasks = tasksWithDates.filter(task => task !== null);
     if (validTasks.length !== tasksWithDates.length) {
+        alert("Some tasks are invalid. Please correct them before proceeding.");
         return;  // Stops proceeding if any tasks were invalid
     }
 
@@ -236,11 +202,11 @@ function assignDates() {
     showRearrangePopup();  // Only called if all tasks are valid
 }
 
-    function showRearrangePopup() {
-        document.getElementById('popup2').style.display = 'none';
-        document.getElementById('popup3').style.display = 'block';
-        displayTasksForRearrangement();
-    }
+function showRearrangePopup() {
+    document.getElementById('popup2').style.display = 'none';
+    document.getElementById('popup3').style.display = 'block';
+    displayTasksForRearrangement();
+}
 
 function displayTasksForRearrangement() {
     const rearrangeList = document.getElementById('task-rearrange-list');
@@ -255,7 +221,7 @@ function displayTasksForRearrangement() {
         taskDiv.className = 'task-item';
         taskDiv.setAttribute('draggable', true);
         taskDiv.innerHTML = `
-            <h4>${task.name}</h4>
+            <h3>${task.name}</h3>
             <p>Begin on ${formattedStartDate}</p>
             <p>Finish on ${formattedEndDate}</p>
             <div class="steps-container" id="step-rearrange-${index}">
@@ -305,7 +271,7 @@ function displayTasksForRearrangement() {
         animation: 150,
         onEnd: (evt) => {
             const reorderedTasks = Array.from(rearrangeList.children).map(taskDiv => {
-                const taskName = taskDiv.querySelector('h4').textContent;
+                const taskName = taskDiv.querySelector('h3').textContent;
                 return tasks.find(task => task.name === taskName);
             });
             tasks = reorderedTasks;
@@ -316,7 +282,7 @@ function displayTasksForRearrangement() {
 
 function confirmRearrangement() {
     const rearrangedTasks = Array.from(document.querySelectorAll('#task-rearrange-list .task-item'))
-        .map(taskItem => taskItem.querySelector('h4').textContent);
+        .map(taskItem => taskItem.querySelector('h3').textContent);
 
     taskNames = rearrangedTasks;
 

@@ -402,37 +402,18 @@ button {
     background-color: var(--light-gray);
 }
 
-/* Pomodoro */
-.toggle-buttons button{
-    height: 3rem;
-    width: 9rem;
+/* lol */
+.pomodoro-button {
+    height: 2rem;
+    width: 7rem;
 
-    border-radius: 20px;
+    border-radius: 10px;
     border-style: none;
+    background-color: #000000;
+    color: var(--off-white);
 }
 
-#timer {
-    font-size: 5rem;
-    text-align: center;
-    margin: 2rem;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-#toggle-button, #reset {
-    height: 3rem;
-    width: 9rem;
-
-    border-radius: 20px;
-    border-style: none;
-}
-
-.container button:hover {
-    background-color: var(--light-gray);
-    color: var(--gray);
+.pomodoro-button:hover {
+    background-color: var(--gray);
+    color: var(--light-gray);
 }

@@ -76,7 +76,7 @@ h1 {
 }
 
 .question-container p {
-    background-color: var(--light-gray);
+    background-color: var(--off-white);
     padding: 50px;
     border-radius: 30px;
 }
