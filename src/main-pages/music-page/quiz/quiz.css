@@ -4,7 +4,7 @@
     src: url('/src/fonts/positions.otf') format('opentype');
 }
 
-html {
+body {
     height: 100vh;  /* 100% of viewport height */
     width: 100vw;   /* 100% of viewport width */
     margin: 0;
@@ -35,8 +35,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center; 
-    gap: 4rem;
     height: 100vh;
+    width: 100vw;
 }
 
 .content {
@@ -54,7 +54,7 @@ html {
     align-items: center;
 
     /* dimensions */
-    height: 54rem;
+    height: 50rem;
     width: 42rem;
 
     border-radius: 120px;
@@ -118,22 +118,6 @@ html {
 
     /* spacing */
     margin-top: 1.5rem;
-
-    /* font */
-    font-family: positions;
-    font-size: 1.5rem;
-}
-
-#next-button {
-    /* dimensions */
-    height: 3rem;
-    width: 12rem;
-
-    border-radius: 10px;
-    border-style: none;
-
-    /* spacing */
-    margin-top: 1rem;
 
     /* font */
     font-family: positions;

@@ -6,13 +6,13 @@
     <title>Umi</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../images/face.png" type="image/png">
+    <link rel="icon" href="../../../images/face.png" type="image/png">
 
     <!-- Navigation Bar CSS -->
-    <link rel="stylesheet" href="/src/navBar.css">
+    <link rel="stylesheet" href="../../../navBar.css">
 
     <!-- Global CSS Page -->
-    <link rel="stylesheet" href="/src/global.css">
+    <link rel="stylesheet" href="../../../global.css">
 
     <!-- Quiz CSS -->
     <link rel="stylesheet" href="results.css">
@@ -21,44 +21,41 @@
     <main>
         <section id="main-container">
             <figure>
-                <img src="/src/images/mascot-transparent-blue.png" id="mascot-transparent" alt="mascot-transparent">
+                <img src="../../../images/mascot-transparent-blue.png" id="mascot-transparent" alt="mascot-transparent">
             </figure>
             <section id="results-container">
                 <div id="result-name">
                     <!-- name of persona goes here -->
-                    <p>Universal Listener</p>
                 </div>
                 <div id="playlist-cover">
                     <!-- playlist cover art goes here -->
-                     <img src="/src/images/mascot-combined2.png">
+                     <img src="../../../images/mascot-combined2.png">
                 </div>
                 <div id="info-container">
                     <div id="genres-container">
                         <!-- genre names -->
-                        <div class="genre">Classical</div>
-                        <div class="genre">Pop</div>
-                        <div class="genre">Country</div>
+                        <div class="genre"></div>
+                        <div class="genre"></div>
+                        <div class="genre"></div>
                     </div>
                     <div id="about-you">
-                        You have a diverse taste in music! People always come
-                        to you for reccomendations since you seem to listen to 
-                        it all!
+                        <!-- description goes here -->
                     </div>
                 </div>
             </section>
     
             <section id="options-container">
-                <button class="option" onclick="goToPage('question-1.html')">
+                <button class="option" onclick="goToPage('quiz.html')">
                     try<br>again
                 </button>
                 <button class="option">
-                    <a href="/src/landing-page/home.html">go<br>home</a>
+                    <a href="../../landing-page/home.html">go<br>home</a>
                 </button>
                 <button class="option" id="save-button">
                     save image
                 </button>
                 <button class="option">
-                    <a href="/src/redirect/redirect.html">add to spotify library</a>
+                    <a href="../../redirect/redirect.html">add to spotify library</a>
                 </div>
             </section>
         </section>
@@ -81,7 +78,58 @@
                 document.body.removeChild(link);
             });
         });
+
+        const personas = [
+            {
+                name: "Bass<br>Enthusiast",
+                genres: ["electronic", "edm", "dubstep"],
+                description: "Deep bass & high-energy! Oontz Oontz- get your heart pumping!"
+            },
+            {
+                name: "Chill Vibes<br>Connoisseur",
+                genres: ["acoustic", "jazz", "chill"],
+                description: "Relaxing, mellow tunes? Yes please!"
+            },
+            {
+                name: "Moody<br>Melodist",
+                genres: ["indie", "alternative", "blues"],
+                description: "You love emotional melodies that match your mood!"
+            },
+            {
+                name: "Feel-Good<br>Virtuoso",
+                genres: ["pop", "reggaeton", "j-pop"],
+                description: "Music that lifts your spirits is what you gravitate towards!"
+            },
+            {
+                name: "Universal<br>Listener",
+                genres: ["pop", "alternative", "electronic"],
+                description: "Wow, you have a diverse taste in music. You seem to listen to it all!"
+            }
+        ];
+
+        // get result index from localStorage
+        const idx = localStorage.getItem("quizResultIdx");
+
+        if (idx !== null && !isNaN(idx)) {
+            // get persona based off stored idx
+            const persona = personas[idx];
+        
+            // insert into html
+            const name = document.getElementById("result-name");
+            name.innerHTML = `<p>${persona.name}</p>`;
+        
+            const desc = document.getElementById("about-you");
+            desc.innerHTML = `<p>${persona.description}</p>`;
+        
+            const allGenres = document.querySelectorAll(".genre");
+            persona.genres.forEach((genre, index) => {
+                if (allGenres[index]) {
+                    allGenres[index].innerHTML = `<p>${genre}</p>`;
+                }
+            });
+        } else {
+            window.location.href = "quiz.html";
+        }
     </script>
-    <script src="quiz.js"></script>
 </body>
 </html>

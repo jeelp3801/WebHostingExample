@@ -1,22 +1,56 @@
 body {
     background-color: var(--dark-gray);
-    margin: 0;
-    height: 100vh; /* Full viewport height */
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-h1 {
-    font-family: 'Outfit';
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
     color: var(--off-white);
-    margin: 50px;
-    text-align: center;
 }
 
-#fetchEvents {
-    font-family: 'Outfit';
+#main-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 10px 20px;
+    position: relative; 
+    padding: 20px;
+    background-color: var(--grey);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%; 
+    max-width: 500px; 
+}
+
+#cancel-button {
+    position: absolute; 
+    top: 10px;
+    left: 10px; 
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--off-white);
+    background-color: var(--dark-gray);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#cancel-button:hover {
+    background-color: var(--off-black);
+    transform: scale(1.1); 
+}
+
+#fetchEvents, #loginButton {
+    padding: 15px 30px;
+    font-family: 'Outfit', sans-serif;
     font-size: 16px;
     color: var(--gray);
     background-color: var(--off-white);
@@ -25,8 +59,38 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    margin-top: 20px; 
 }
 
 #fetchEvents:hover {
     background-color: var(--color-blue-medium);
+}
+
+#loginButton:hover {
+    background-color: var(--color-blue-medium);
+}
+
+#task-display {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--off-white);
+    background-color: var(--grey);
+    margin-top: 20px; 
+    border-radius: 10px; 
+}
+
+#task-display {
+    display: block; /* Ensure the container is visible */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--grey);
+    color: var(--off-white);
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: left;
   }
+  

@@ -22,10 +22,20 @@ a:hover {
     color: var(--color-blue-medium);
 }
 
+h1 {
+    color: var(--light-gray);
+}
+
 body {
-    margin-top: 15rem;
+    margin-top: 12rem;
     color: var(--off-black);
     background-color: var(--dark-gray);
+}
+
+#main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .umi-music {
@@ -49,6 +59,32 @@ body {
 }
 
 .umi-music button:hover {
+    background-color: var(--off-black);
+    color: var(--gray);
+    cursor: pointer;
+}
+
+/* Now playing feature - buttons */
+#spotify-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+#spotify-buttons button {
+    height: 3rem;
+    width: 10rem;
+
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+
+    background-color: black;
+    color: var(--light-gray);
+
+    margin-bottom: 0.5rem;
+}
+
+#spotify-buttons button:hover {
     background-color: var(--off-black);
     color: var(--gray);
     cursor: pointer;

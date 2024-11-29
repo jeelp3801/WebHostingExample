@@ -4,10 +4,15 @@ const querystring = require('querystring');
 const cors = require('cors');
 const app = express();
 
+const dotenv = require('dotenv');/// to access .env file
+
+dotenv.config();
+
 const PORT = 8888;
-const CLIENT_ID = '80774347a92f4e1499c128ffc6ce3dd0';
-const CLIENT_SECRET = '9575130a6a194c79b7670cd071c99c38';
-const REDIRECT_URI = 'http://localhost:8888/callback';
+
+const CLIENT_ID = process.env.SP_CLIENT_ID;
+const CLIENT_SECRET = process.env.SP_CLIENT_SECRET;
+const REDIRECT_URI = process.env.SP_REDIRECT_URI;
 // Serve static files from the "frontend" directory
 const path = require('path'); // Add this line
 app.use(express.static(path.join(__dirname, '../')));

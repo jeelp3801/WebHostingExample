@@ -347,32 +347,92 @@ async function displayTasksInPopup(tasks) {
 
         // Attach change event listeners to track edits
         taskDiv.querySelectorAll('input').forEach(input => {
-            input.addEventListener('change', function () {
-                const taskId = input.dataset.taskId;
-                const field = input.dataset.field;
-                const stepId = input.dataset.stepId;
-                const value = input.value;
-
-                // Initialize the task object in editedFields if it doesn't exist
-                if (!editedFields[taskId]) {
-                    editedFields[taskId] = { steps: [] };
-                }
-
-                // Check if the edited field is a step or a task field
-                if (stepId !== undefined) {
-                    // Initialize the steps array if it doesn't exist
-                    if (!editedFields[taskId].steps[stepId]) {
-                        editedFields[taskId].steps[stepId] = {};
-                    }
-                    editedFields[taskId].steps[stepId][field] = value;
-                } else {
-                    editedFields[taskId][field] = value;
-                }
-
-                // Show the "Save" button for this task
-                document.getElementById(`saveButton-${taskId}`).style.display = 'inline-block';
-            });
-        });
+          input.addEventListener('change', function () {
+              const taskId = input.dataset.taskId;
+              const field = input.dataset.field;
+              const stepId = input.dataset.stepId;
+              const value = input.value;
+      
+              // Get the current date
+              const currentDate = new Date().toISOString().split('T')[0];
+      
+              // Initialize the task object in editedFields if it doesn't exist
+              if (!editedFields[taskId]) {
+                  editedFields[taskId] = { steps: [] };
+              }
+      
+              // Validation for task dates
+              if (field === 'startDate' || field === 'endDate') {
+                  const startDateInput = document.getElementById(`startDate-${taskId}`);
+                  const endDateInput = document.getElementById(`endDate-${taskId}`);
+                  const startDate = startDateInput ? startDateInput.value : null;
+                  const endDate = endDateInput ? endDateInput.value : null;
+      
+                  // Prevent task dates before the current date
+                  if (value < currentDate) {
+                      alert("Dates cannot be earlier than the current date 😭");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+      
+                  // Ensure the end date is after the start date
+                  if (field === 'endDate' && startDate && value < startDate) {
+                      alert("End Date cannot be earlier than Start Date 😵‍💫");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+      
+                  if (field === 'startDate' && endDate && endDate < value) {
+                      alert("Start Date cannot be later than End Date 😵‍💫");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+              }
+      
+              // Validation for step dates
+              if (field === 'stepDate') {
+                  const taskStartDateInput = document.getElementById(`startDate-${taskId}`);
+                  const taskEndDateInput = document.getElementById(`endDate-${taskId}`);
+                  const taskStartDate = taskStartDateInput ? taskStartDateInput.value : null;
+                  const taskEndDate = taskEndDateInput ? taskEndDateInput.value : null;
+      
+                  // Prevent step dates before the current date
+                  if (value < currentDate) {
+                      alert("Step dates cannot be earlier than the current date 😭");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+      
+                  // Ensure step dates are within the task's start and end date range
+                  if (taskStartDate && value < taskStartDate) {
+                      alert("Step dates cannot be earlier than the Task Start Date 😭");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+      
+                  if (taskEndDate && value > taskEndDate) {
+                      alert("Step dates cannot be later than the Task End Date 😭");
+                      input.value = ''; // Clear the invalid input
+                      return;
+                  }
+              }
+      
+              // Check if the edited field is a step or a task field
+              if (stepId !== undefined) {
+                  // Initialize the steps array if it doesn't exist
+                  if (!editedFields[taskId].steps[stepId]) {
+                      editedFields[taskId].steps[stepId] = {};
+                  }
+                  editedFields[taskId].steps[stepId][field] = value;
+              } else {
+                  editedFields[taskId][field] = value;
+              }
+      
+              // Show the "Save" button for this task
+              document.getElementById(`saveButton-${taskId}`).style.display = 'inline-block';
+          });
+      });
+      
     }
 }
 
@@ -393,10 +453,10 @@ async function deleteTask(taskId) {
         });
     
         if (response.ok) {
-            alert('Task archived successfully');
+            alert('Task deleted successfully 😍');
             fetchTasksForDisplay(); // Refresh the task list
         } else {
-            alert('Failed to archive task');
+            alert('Failed to delete task 😭');
         }
     } catch (error) {
         console.error("Error archiving task:", error);
@@ -443,15 +503,15 @@ async function saveTask(taskId) {
         });
 
         if (response.ok) {
-            alert('Task updated successfully');
+            alert('Task updated successfully 😍');
             fetchTasksForDisplay(); // Refresh the task list
         } else {
             const errorData = await response.json();
-            alert(`Failed to update task: ${errorData.error || response.statusText}`);
+            alert(`Failed to update task: ${errorData.error || response.statusText} 😭`);
         }
     } catch (error) {
         console.error("Error updating task:", error);
-        alert("An error occurred while updating the task.");
+        alert("An error occurred while updating the task 🥲");
     }
 }
 
@@ -523,7 +583,7 @@ const shortBreakBtn = document.getElementById("short-break-btn");
 const longBreakBtn = document.getElementById("long-break-btn");
 
 
-function updateDisplay(minutes, seconds) {
+function updateDisplay_timer(minutes, seconds) {
   minutesDisplay.textContent = String(minutes).padStart(2, "0");
   secondsDisplay.textContent = String(seconds).padStart(2, "0");
 }
@@ -558,7 +618,7 @@ function updateTimer() {
     } else {
       seconds--;
     }
-    updateDisplay(workMinutes, seconds);
+    updateDisplay_timer(workMinutes, seconds);
   }
 }
 
@@ -614,7 +674,7 @@ function resetTimer() {
   } else if (currentMode === "long-break") {
     workMinutes = longBreakTime;
   }
-  updateDisplay(workMinutes, seconds);
+  updateDisplay_timer(workMinutes, seconds);
 }
 
 // Editable Clock Behavior
@@ -652,7 +712,7 @@ function changeMode(mode) {
   } else if (mode === "long-break") {
     workMinutes = longBreakTime;
   }
-  updateDisplay(workMinutes, seconds);
+  updateDisplay_timer(workMinutes, seconds);
   sessionBtn.classList.toggle("active", mode === "session");
   shortBreakBtn.classList.toggle("active", mode === "short-break");
   longBreakBtn.classList.toggle("active", mode === "long-break");
@@ -757,4 +817,5 @@ toggleButton.addEventListener("click", () => {
 resetButton.addEventListener("click", resetTimer);
 
 // Initialize Display
-updateDisplay(workMinutes, seconds);
+updateDisplay_timer(workMinutes, seconds);
+
