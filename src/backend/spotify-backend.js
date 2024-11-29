@@ -13,6 +13,7 @@ const PORT = 8888;
 const CLIENT_ID = process.env.SP_CLIENT_ID;
 const CLIENT_SECRET = process.env.SP_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SP_REDIRECT_URI;
+console.log(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI); // To verify it's working
 // Serve static files from the "frontend" directory
 const path = require('path'); // Add this line
 app.use(express.static(path.join(__dirname, '../')));
@@ -70,7 +71,7 @@ app.get('/callback', async (req, res) => {
         // Store tokens securely (e.g., in a database or session)
         // For simplicity, we send them back to the frontend
         res.redirect(
-            `http://localhost:${PORT}/main-pages/music-page/spotify-feature1/spotify-feature1.html?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
+            `http://localhost:8888/main-pages/music-page/spotify-feature1/spotify-feature1.html?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
     } catch (error) {
         console.error('Error fetching tokens:', error.response?.data || error.message);

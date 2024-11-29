@@ -1,10 +1,6 @@
 // -----------updated with playing toggle one------
-const dotenv = require('dotenv');/// to access .env file
-
-dotenv.config();
-
-const CLIENT_ID = process.env.SP_CLIENT_ID;
-const REDIRECT_URI = process.env.SP_REDIRECT_URI;
+const CLIENT_ID = "80774347a92f4e1499c128ffc6ce3dd0";
+const REDIRECT_URI = "http://localhost:8888/callback";
 const SCOPES = [
     "user-read-playback-state",
     "user-modify-playback-state",
@@ -161,7 +157,7 @@ document.getElementById("next-song-button").addEventListener("click", async () =
           });
       }).catch((error) => {
           console.error("Error skipping to the next song:", error);
-          alert("Could not skip to the next song. Please try again 🥹");
+          alert("Oops! Could not skip to the next song. Please try again 🥹");
       });
   } else {
       console.error("Player is not initialized for skipping to the next song.");
@@ -275,7 +271,7 @@ async function fetchPlaylists() {
       });
   } catch (error) {
       console.error("Error fetching playlists:", error);
-      alert("Could not fetch playlists. Please try again later 😭");
+      alert("Opps! Could not fetch playlists. Please try again later 😭");
   }
 }
 
@@ -285,7 +281,7 @@ async function playPlaylist(playlistUri) {
     try {
         if (!deviceId) {
             console.error("Device not ready. Please wait for the player to initialize.");
-            alert("Player is not ready yet. Please try again 🥹");
+            alert("Oops! Player is not ready yet. Please try again 🥹");
             return;
         }
 
@@ -336,14 +332,14 @@ async function fetchNowPlaying() {
       }
   } catch (error) {
       console.error("Error fetching Now Playing data:", error);
-      alert("Could not fetch Now Playing data. Please try again 🥹");
+      alert("Oops! Could not fetch Now Playing data. Please try again 🥹");
   }
 }
 
 // Show Now Playing button event listener
 const toggleNowPlayingButton = document.getElementById("toggle-now-playing");
 toggleNowPlayingButton.addEventListener("click", () => {
-    console.log("Show Now Playing button clicked."); // Debugging log
+    console.log("Show Now Playing button clicked."); 
     fetchNowPlaying(); // Call the fetch function
 });
 
