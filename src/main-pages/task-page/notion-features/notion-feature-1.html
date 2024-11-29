@@ -28,9 +28,11 @@
 </head>
 <body>
     <main class="main-container">
+
         <!-- POPUP 1 -->
         <div class="pop-up-window" id="popup1">
-            <h3>commit to your tasks</h3>
+            <button type="button" onclick="goBackToTaskPage()" class="cancel-button">X</button>
+            <h3>add your tasks</h3>
             <div id="task-container">
                 <!--tasks added here dynamically-->
             </div>
@@ -46,7 +48,8 @@
 
         <!-- POPUP 2 -->
         <div class="pop-up-window" id="popup2">
-            <h3>how will you complete these tasks</h3>
+            <button type="button" onclick="goBackToTaskPage()" class="cancel-button">X</button>
+            <h3>how will you complete these tasks?</h3>
             <div id="step-list">
                 
             </div>
@@ -57,20 +60,27 @@
         
         <!-- POPUP 3 -->
         <div class="pop-up-window" id="popup3">
+            <button type="button" onclick="goBackToTaskPage()" class="cancel-button">X</button>
             <h3>rearrange your week</h3>
+            <h6>drag and drop the order of your tasks and edit the step dates assigned!</h6>
             <div id="task-rearrange-list">
                 
             </div>
             <button onclick="togglePopup('popup2')" class="back-button"><</button>
-            <button type="button" onclick="confirmRearrangement()" class="next-button">></button> 
+            <button type="button" class="next-button" onclick="togglePopup('popup4')">></button> 
         </div>
     
         <!-- POPUP 4 -->
         <div class="pop-up-window" id="popup4">
+            <button type="button" onclick="goBackToTaskPage()" class="cancel-button">X</button>
             <h3>are you satisfied</h3>
             <div id="emote-container">
-                <img src="../../../images/emotes/sad-emote.png" alt="sad-emote">
-                <img src="../../../images/emotes/neutral-emote.png" alt="neutral-emote">
+                <button type="button"  id="restart" onclick="togglePopup('popup1')">
+                    <img src="../../../images/emotes/sad-emote.png" alt="sad-emote">
+                </button>
+                <button type="button"  id="editAgain" onclick="togglePopup('popup3')">
+                    <img src="../../../images/emotes/neutral-emote.png" alt="neutral-emote">
+                </button>
                 <button type="button" id="submitTask">
                     <img src="../../../images/emotes/happy-emote.png" alt="happy-emote">
                 </button>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Umi</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../../images/face.png" type="image/png">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../global.css">
+
+    <link rel="stylesheet" href="umi-says.css">
+</head>
+<body>
+    <div id="main-header">
+        <img src="../../images/mascot-combined.png" alt="mascot" id="mascot">
+    </div>
+    <div class="quote-container">
+        <button id="cancel-button" onclick="location.href='../home.html'">X</button>
+        <h2>Umi says...</h2>
+        <div class="quote"></div>
+        <div class="author"></div>
+    </div>
+    <script>
+        // Fetch a random quote from Quotable API
+        fetch('http://api.quotable.io/random?tags=inspirational')
+            .then(response => response.json())
+            .then(data => {
+                // Display the quote and author
+                document.querySelector('.quote').textContent = `"${data.content}"`;
+                document.querySelector('.author').textContent = `- ${data.author}`;
+            })
+            .catch(error => {
+                console.error('Error fetching quote:', error);
+                document.querySelector('.quote').textContent = 'Failed to load quote.';
+            });
+    </script>
+</body>
+</html>

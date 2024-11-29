@@ -91,63 +91,141 @@
 
 
 
-//updated file below 
+// // //updated file below 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const fetchEventsButton = document.getElementById('fetchEvents');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const fetchEventsButton = document.getElementById('fetchEvents');
   
-    if (fetchEventsButton) {
-      fetchEventsButton.addEventListener('click', function() {
-        console.log('Button clicked');
-        fetchCalendarEvents();
-      });
-    } else {
-      console.error('Button not found!');
-    }
-  });
+//     if (fetchEventsButton) {
+//       fetchEventsButton.addEventListener('click', function() {
+//         console.log('Button clicked');
+//         fetchCalendarEvents();
+//       });
+//     } else {
+//       console.error('Button not found!');
+//     }
+//   });
   
-  async function fetchCalendarEvents() {
-    try {
-      // Make the API call to fetch events from your backend
-      const response = await fetch('/events');
+//   async function fetchCalendarEvents() {
+//     try {
+//       // Make the API call to fetch events from your backend
+//       const response = await fetch('http://localhost:3000/events');
       
+//       if (response.ok) {
+//         const events = await response.json();
+//         console.log('Fetched events:', events);
+        
+//         // Call function to display events
+//         displayEvents(events);
+//       } else {
+//         console.error('Error fetching events:', response.status);
+//       }
+//     } catch (err) {
+//       console.error('Error fetching calendar events:', err);
+//     }
+//   }
+  
+//   function displayEvents(events) {
+//     console.log('Display events function called');
+//     console.log('Events to display:', events);  // Check if events are correct
+  
+//     const eventsContainer = document.getElementById('task-display');
+//     eventsContainer.innerHTML = ''; // Clear old content if necessary
+//     const header = document.createElement('h2');
+//     header.textContent = 'Upcoming Events:';
+//     eventsContainer.appendChild(header);
+    
+//     // If there are events, list them
+//     if (Array.isArray(events) && events.length > 0) {
+//       const eventsList = document.createElement('ul');
+//       events.forEach(event => {
+//         const eventItem = document.createElement('li');
+//         eventItem.textContent = `${event.summary} - ${new Date(event.start.dateTime || event.start.date).toLocaleString()}`;
+//         eventsList.appendChild(eventItem);
+//       });
+//       eventsContainer.appendChild(eventsList);
+//     } else {
+//       eventsContainer.innerHTML += '<p>No upcoming events found.</p>';
+//     }
+  
+//     // Append the events container to the body
+//     console.log('Appending events container to body');
+//     document.body.appendChild(eventsContainer);
+//   }
+  
+  
+
+//---------***updated file with login feature that redirects back to task page-------------
+
+document.addEventListener('DOMContentLoaded', function () {
+  const loginButton = document.getElementById('loginButton');
+  const fetchEventsButton = document.getElementById('fetchEvents');
+  const loginStatus = document.getElementById('loginStatus');
+  const eventsContainer = document.getElementById('task-display');
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = 'calendar.css';
+  document.head.appendChild(stylesheet);
+
+  // Login with Google functionality
+  loginButton.addEventListener('click', function () {
+    window.location.href = 'http://localhost:3000/auth/google'; // Redirect to OAuth flow
+  });
+
+  // Check login status on page load
+  checkLoginStatus();
+
+  async function checkLoginStatus() {
+    try {
+      const response = await fetch('http://localhost:3000/auth/status');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.loggedIn) {
+          loginStatus.style.display = 'block'; // Show login success message
+          fetchEventsButton.disabled = false; // Enable fetch events button
+        }
+      }
+    } catch (error) {
+      console.error('Error checking login status:', error);
+    }
+  }
+
+  // Fetch events functionality
+  fetchEventsButton.addEventListener('click', async function () {
+    try {
+      const response = await fetch('http://localhost:3000/events');
       if (response.ok) {
         const events = await response.json();
-        console.log('Fetched events:', events);
-        
-        // Call function to display events
         displayEvents(events);
       } else {
         console.error('Error fetching events:', response.status);
       }
-    } catch (err) {
-      console.error('Error fetching calendar events:', err);
+    } catch (error) {
+      console.error('Error fetching calendar events:', error);
     }
-  }
-  
+  });
+
   function displayEvents(events) {
-    console.log('Display events function called');
-    console.log('Events to display:', events);  // Check if events are correct
+    const eventsContainer = document.getElementById('task-display');
+    eventsContainer.innerHTML = ''; // Clear previous content
   
-    const eventsContainer = document.createElement('div');
-    eventsContainer.innerHTML = '<h2>Upcoming Events:</h2>';
-    
-    // If there are events, list them
+    const header = document.createElement('h2');
+    header.textContent = 'Upcoming Events:';
+    eventsContainer.appendChild(header);
+  
     if (Array.isArray(events) && events.length > 0) {
       const eventsList = document.createElement('ul');
-      events.forEach(event => {
+      events.forEach((event) => {
         const eventItem = document.createElement('li');
-        eventItem.textContent = `${event.summary} - ${new Date(event.start.dateTime || event.start.date).toLocaleString()}`;
+        eventItem.textContent = `${event.summary} - ${new Date(
+          event.start.dateTime || event.start.date
+        ).toLocaleString()}`;
         eventsList.appendChild(eventItem);
       });
       eventsContainer.appendChild(eventsList);
     } else {
-      eventsContainer.innerHTML += '<p>No upcoming events found.</p>';
+      eventsContainer.innerHTML = '<p>No upcoming events found.</p>';
     }
-  
-    // Append the events container to the body
-    console.log('Appending events container to body');
-    document.body.appendChild(eventsContainer);
   }
-  
-  
+});
+

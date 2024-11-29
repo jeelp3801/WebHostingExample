@@ -157,7 +157,7 @@ document.getElementById("next-song-button").addEventListener("click", async () =
           });
       }).catch((error) => {
           console.error("Error skipping to the next song:", error);
-          alert("Could not skip to the next song. Please try again.");
+          alert("Could not skip to the next song. Please try again 🥹");
       });
   } else {
       console.error("Player is not initialized for skipping to the next song.");
@@ -271,7 +271,7 @@ async function fetchPlaylists() {
       });
   } catch (error) {
       console.error("Error fetching playlists:", error);
-      alert("Could not fetch playlists. Please try again later.");
+      alert("Could not fetch playlists. Please try again later 😭");
   }
 }
 
@@ -281,7 +281,7 @@ async function playPlaylist(playlistUri) {
     try {
         if (!deviceId) {
             console.error("Device not ready. Please wait for the player to initialize.");
-            alert("Player is not ready yet. Please try again.");
+            alert("Player is not ready yet. Please try again 🥹");
             return;
         }
 
@@ -332,7 +332,7 @@ async function fetchNowPlaying() {
       }
   } catch (error) {
       console.error("Error fetching Now Playing data:", error);
-      alert("Could not fetch Now Playing data. Please try again.");
+      alert("Could not fetch Now Playing data. Please try again 🥹");
   }
 }
 

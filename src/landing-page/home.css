@@ -35,6 +35,9 @@ a:hover {
 
 /* Header */
 #main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
     background-color: var(--gray);
     z-index: -1;
 
@@ -53,13 +56,13 @@ a:hover {
 }
 
 #main-header h2 {
-    float: right;
+    font-size: 4rem;
 }
 
 /* Main */
 
 #section-bio h3 {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 500;
     text-align: center;
     color: var(--off-white);
@@ -74,7 +77,10 @@ a:hover {
     border-radius: 30px;
 
     text-align: center;
-    color: var(--gray);
+    color: var(--off-white);
+
+    font-size: large;
+    line-height: 1.7;
 }
 
 #article-container {
@@ -85,10 +91,12 @@ a:hover {
 
 #article-container h4{
     color: var(--light-gray);
+    font-size: larger;
 }
 
 #article-container p{
-    color: var(--gray);
+    color: var(--light-gray);
+    line-height: 1.7;
 }
 
 .left-desc {
@@ -122,97 +130,56 @@ a:hover {
     color: var(--off-white);
 }
 
-/* Options */
-#options-sections {
-    margin-top: 10%;
-}
-
-#options-sections h2 {
-    font-size: xx-large;
-    font-weight: 400;
-    text-align: center;
-    color: var(--off-white);
-}
-
-/* Options buttons */
-
-#options-list {
+/* Options Container */
+#options-container {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
-#options-list li {
-    list-style-type: none;
-}
-
-.option {
-    text-decoration: none;
-    font-size: medium;
+#options-container h2 {
     color: var(--off-white);
-    padding: 30px;
-    width: 150px;
-    border-radius: 20px;
+    font-size: 2rem;
+}
+
+#music-option {
+    font-size: 1rem;
+    color: var(--light-gray);
+
+    margin-top: 3rem;
+}
+
+#umi-music-button {
+    height: 5rem;
+    width: 9rem;
+
+    font-size: 1rem;
+
     border-style: none;
-    text-align: center;
+    border-radius: 1rem;
     background-color: var(--gray);
     color: var(--light-gray);
 }
 
-.option:hover {
+#umi-music-button:hover {
     background-color: var(--dark-gray);
-}
-
-/* Footer */
-#privacy-policy h3 {
-    padding: 0;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    margin-right: 0;
-    margin-left:0;
-}
-
-#privacy-policy p {
-    padding: 0;
-    margin-bottom: 30px;
-    margin-top: 10px;
-    margin-right: 0;
-    margin-left:0;
-}
-
-#footer-center h3 {
-    text-align: center;
-    padding: 0;
-    margin-bottom: 15px;
-    margin-top: 25px;
-    margin-right: 0;
-    margin-left: 400px;
-}
-
-#footer-center p {
-    padding: 0;
-   
-    
-    margin-left: 300px;
-}
-
-#creators h3 {
-    padding: 0;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-right: 0;
-    margin-left: 350px;
-}
-
-#creators p {
-    padding: 0;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    margin-right: 0;
-    margin-left: 350px;
-}
-
-#creators {
-    margin-bottom: 20px;
     color: var(--gray);
+}
+
+#start-now-button {
+    height: 5rem;
+    width: 9rem;
+
+    font-size: 1rem;
+
+    border-style: none;
+    border-radius: 1rem;
+
+    color: var(--color-blue-light);
+    background-color: var(--color-blue-medium);
+}
+
+#start-now-button:hover {
+    background-color:  var(--color-blue-dark);
+    color:  var(--color-blue-medium);
 }
