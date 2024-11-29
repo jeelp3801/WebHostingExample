@@ -1,6 +1,10 @@
 // -----------updated with playing toggle one------
-const CLIENT_ID = "80774347a92f4e1499c128ffc6ce3dd0";
-const REDIRECT_URI = "http://localhost:8888/callback";
+const dotenv = require('dotenv');/// to access .env file
+
+dotenv.config();
+
+const CLIENT_ID = process.env.SP_CLIENT_ID;
+const REDIRECT_URI = process.env.SP_REDIRECT_URI;
 const SCOPES = [
     "user-read-playback-state",
     "user-modify-playback-state",
