@@ -780,7 +780,7 @@ secondsDisplay.addEventListener("keydown", (e) => {
 
 async function startMusic(accessToken) {
   try {
-    const response = await fetch(`http://localhost:8888/start-music?access_token=${accessToken}`, {
+    const response = await fetch(`http://localhost:${PORT}/start-music?access_token=${accessToken}`, {
       method: 'POST',
     });
     if (response.ok) {
@@ -795,7 +795,7 @@ async function startMusic(accessToken) {
 
 async function stopMusic(accessToken) {
   try {
-    const response = await fetch(`http://localhost:8888/stop-music?access_token=${accessToken}`, {
+    const response = await fetch(`http://localhost:${PORT}/stop-music?access_token=${accessToken}`, {
       method: 'POST',
     });
     if (response.ok) {

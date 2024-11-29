@@ -8,7 +8,7 @@ const dotenv = require('dotenv');/// to access .env file
 
 dotenv.config();
 
-const PORT = 8888;
+const PORT = 3000;
 
 const CLIENT_ID = process.env.SP_CLIENT_ID;
 const CLIENT_SECRET = process.env.SP_CLIENT_SECRET;
