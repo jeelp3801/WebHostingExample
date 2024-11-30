@@ -139,20 +139,18 @@
 //   });
 // });
 
+
+//------------updated code with login feature too 
 const express = require('express');
 const { google } = require('googleapis');
 const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
-const spotifyBackend = require('./spotify-backend'); // Adjust the path as needed
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
-
-// Use the Spotify backend routes
-app.use('/api/spotify', spotifyBackend);
 
 // Enable CORS
 app.use(cors());
@@ -160,12 +158,13 @@ app.use(cors());
 // Serve static files for the frontend
 app.use(express.static(path.join(__dirname, '../')));
 
-// Serve CalendarSync.html or landing page
+// Serve CalendarSync.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../landing-page/home.html'));
 });
 
-// Set up OAuth2 client for Google Calendar
+
+// Set up OAuth2 client
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
@@ -175,18 +174,19 @@ const oauth2Client = new google.auth.OAuth2(
 // Scopes for Google Calendar
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 
-// Route to start the OAuth flow with Google
+// Route to start the OAuth flow
 app.get('/auth/google', (req, res) => {
-  const currentPage = req.headers.referer || '/calendarSync.html'; // Fallback to default page
+  const currentPage = req.headers.referer || '/calendarSync.html'; // Fallback to default
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
-    scope: SCOPES,
-    state: currentPage, // Pass the current page URL for redirection after successful auth
+    scope: ['https://www.googleapis.com/auth/calendar.readonly'],
+    state: currentPage, // Pass the current page URL
   });
   res.redirect(authUrl);
 });
 
-// OAuth2 callback route for Google authentication
+
+// OAuth2 callback route
 app.get('/auth/google/callback', async (req, res) => {
   const { code } = req.query;
 
@@ -199,15 +199,14 @@ app.get('/auth/google/callback', async (req, res) => {
     oauth2Client.setCredentials(tokens);
     console.log('Tokens received:', tokens);
 
-    // Redirect to the calendar sync page or other desired page
-    res.redirect('/calendar-sync');
+    // Redirect back to the task page or calendar sync page
+    res.redirect('/calendar-sync'); // Adjust path as needed
   } catch (error) {
     console.error('Error during OAuth2 token exchange:', error);
     res.status(500).send('Error during authorization: ' + error.message);
   }
 });
 
-// OAuth2 callback route for alternate path (e.g., task-page)
 app.get('/oauth2callback', async (req, res) => {
   const { code, state } = req.query;
 
@@ -220,13 +219,16 @@ app.get('/oauth2callback', async (req, res) => {
     oauth2Client.setCredentials(tokens);
     console.log('Tokens received:', tokens);
 
-    // Redirect back to the state page (or fallback)
-    res.redirect(state || '/task-page/notion-features/CalendarSync.html');
+    // Redirect back to the original page
+    res.redirect('/task-page/notion-features/CalendarSync.html'); // Fallback if no state is provided
   } catch (error) {
     console.error('Error during OAuth2 token exchange:', error);
     res.status(500).send('Error during authorization: ' + error.message);
   }
 });
+
+
+
 
 // Endpoint to check login status
 app.get('/auth/status', (req, res) => {
@@ -237,7 +239,7 @@ app.get('/auth/status', (req, res) => {
   }
 });
 
-// Endpoint to fetch Google Calendar events
+// Endpoint to fetch calendar events
 app.get('/events', async (req, res) => {
   if (!oauth2Client.credentials || !oauth2Client.credentials.access_token) {
     return res.status(401).json({ error: 'User not authenticated' });
