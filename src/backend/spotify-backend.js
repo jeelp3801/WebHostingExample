@@ -2,20 +2,25 @@ const express = require('express');
 const axios = require('axios');
 const querystring = require('querystring');
 const cors = require('cors');
-const app = express();
+const dotenv = require('dotenv');
+const path = require('path');
 
-const dotenv = require('dotenv');/// to access .env file
-
+// Initialize dotenv
 dotenv.config();
 
-const PORT = 8888;
-
+// Spotify API credentials
 const CLIENT_ID = process.env.SP_CLIENT_ID;
 const CLIENT_SECRET = process.env.SP_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SP_REDIRECT_URI;
+
+// Express app and router setup
+const app = express();
+const router = express.Router();
+const PORT = 8888;
+
 // Serve static files from the "frontend" directory
-const path = require('path'); // Add this line
 app.use(express.static(path.join(__dirname, '../')));
+
 // Configure CORS Options
 const corsOptions = {
     origin: 'http://localhost:3000', // Update this if frontend is served from a different origin
@@ -24,9 +29,11 @@ const corsOptions = {
     credentials: true,
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
-app.get('/login', (req, res) => {
+// Spotify Login Endpoint
+router.get('/login', (req, res) => {
     const scopes = 'user-read-playback-state user-modify-playback-state streaming playlist-read-private playlist-read-collaborative';
     const authUrl = `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: 'code',
@@ -37,7 +44,8 @@ app.get('/login', (req, res) => {
     res.redirect(authUrl);
 });
 
-app.get('/callback', async (req, res) => {
+// Spotify Callback Endpoint
+router.get('/callback', async (req, res) => {
     const code = req.query.code;
 
     if (!code) {
@@ -67,8 +75,7 @@ app.get('/callback', async (req, res) => {
         console.log('Access Token:', access_token);
         console.log('Refresh Token:', refresh_token);
 
-        // Store tokens securely (e.g., in a database or session)
-        // For simplicity, we send them back to the frontend
+        // Redirect back to frontend with tokens
         res.redirect(
             `http://localhost:8888/main-pages/music-page/spotify-feature1/spotify-feature1.html?access_token=${access_token}&refresh_token=${refresh_token}&expires_in=${expires_in}`
         );
@@ -78,9 +85,8 @@ app.get('/callback', async (req, res) => {
     }
 });
 
-
-
-app.get('/now-playing', async (req, res) => {
+// Now Playing Endpoint
+router.get('/now-playing', async (req, res) => {
     const accessToken = req.query.access_token;
 
     try {
@@ -101,7 +107,8 @@ app.get('/now-playing', async (req, res) => {
     }
 });
 
-app.get('/playlists', async (req, res) => {
+// Playlists Endpoint
+router.get('/playlists', async (req, res) => {
     const accessToken = req.query.access_token;
 
     if (!accessToken) {
@@ -122,56 +129,62 @@ app.get('/playlists', async (req, res) => {
     }
 });
 
-//Added two more endpoints
-// Start Music
-app.post('/start-music', async (req, res) => {
-  const accessToken = req.query.access_token; // Or retrieve from req.body/access_token
-  if (!accessToken) {
-    return res.status(400).send('Access token is required.');
-  }
+// Start Music Endpoint
+router.post('/start-music', async (req, res) => {
+    const accessToken = req.query.access_token; // Or retrieve from req.body/access_token
+    if (!accessToken) {
+        return res.status(400).send('Access token is required.');
+    }
 
-  try {
-    await axios.put(
-      'https://api.spotify.com/v1/me/player/play',
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    res.send('Music started.');
-  } catch (error) {
-    console.error('Error starting music:', error.response?.data || error.message);
-    res.status(500).send('Failed to start music.');
-  }
+    try {
+        await axios.put(
+            'https://api.spotify.com/v1/me/player/play',
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+        res.send('Music started.');
+    } catch (error) {
+        console.error('Error starting music:', error.response?.data || error.message);
+        res.status(500).send('Failed to start music.');
+    }
 });
 
-// Stop Music
-app.post('/stop-music', async (req, res) => {
-  const accessToken = req.query.access_token; // Or retrieve from req.body/access_token
-  if (!accessToken) {
-    return res.status(400).send('Access token is required.');
-  }
+// Stop Music Endpoint
+router.post('/stop-music', async (req, res) => {
+    const accessToken = req.query.access_token; // Or retrieve from req.body/access_token
+    if (!accessToken) {
+        return res.status(400).send('Access token is required.');
+    }
 
-  try {
-    await axios.put(
-      'https://api.spotify.com/v1/me/player/pause',
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    res.send('Music stopped.');
-  } catch (error) {
-    console.error('Error stopping music:', error.response?.data || error.message);
-    res.status(500).send('Failed to stop music.');
-  }
+    try {
+        await axios.put(
+            'https://api.spotify.com/v1/me/player/pause',
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+        res.send('Music stopped.');
+    } catch (error) {
+        console.error('Error stopping music:', error.response?.data || error.message);
+        res.status(500).send('Failed to stop music.');
+    }
 });
 
+// Register the router
+app.use(router);
 
-app.listen(PORT, () => {
-    console.log(`Backend running on http://localhost:${PORT}`);
-});
+// Check if the file is being run directly
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Spotify backend running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
