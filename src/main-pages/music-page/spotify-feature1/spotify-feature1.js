@@ -1,6 +1,6 @@
 // -----------updated with playing toggle one------
 const CLIENT_ID = "3bf9bd855aca433a933463907d79b80e";
-const REDIRECT_URI = "https://webhostingexample.onrender.com/callback";
+const REDIRECT_URI = "https://webhostingexample.onrender.com/main-pages/music-page/spotify-feature1/spotify-feature1.html";
 const SCOPES = [
     "user-read-playback-state",
     "user-modify-playback-state",
