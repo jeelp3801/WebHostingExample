@@ -156,7 +156,7 @@ const port = 3000;
 app.use(cors());
 
 // Serve static files for the frontend
-app.use(express.static(path.join(__dirname, '../main-pages')));
+app.use(express.static(path.join(__dirname, '../')));
 
 // Serve CalendarSync.html
 app.get('/', (req, res) => {
