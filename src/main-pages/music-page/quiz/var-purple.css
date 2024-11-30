@@ -5,6 +5,8 @@ body {
     background: -webkit-linear-gradient(180deg, rgba(130,83,127,1) 0%, rgba(192,158,190,1) 72%, rgba(239,231,239,1) 97%);
     background: linear-gradient(180deg, rgba(130,83,127,1) 0%, rgba(192,158,190,1) 72%, rgba(239,231,239,1) 97%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#82537f",endColorstr="#efe7ef",GradientType=1);
+
+    overflow: hidden    ;
 }
 
 #main-container {

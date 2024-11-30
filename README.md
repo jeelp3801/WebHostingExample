@@ -1,19 +1,23 @@
-
-
-### Umi 😍
-=======
 # UMI: Productivity App for Students 😍😍😍
 
 #### Group Members:
 Jennifer Huang, Jeel Kalpeshkumar Patel, Mouryan Puri, Jaycie Say
 
 #### Project Overview
-UMI is designed to support high school students with effective time management and focus. Inspired by the challenges students face when transitioning into high school, this app integrates AI-based learning features to help students stay organized, manage tasks, and foster healthy study habits.
+Welcome to Umi! Umi is designed to help students manage their tasks effectively while making studying more enjoyable with 
+music and a simple way to plan and organize tasks. In Japanese, "Umi" means "ocean," symbolizing the calm and clarity we aim 
+to bring to your academic life. Umi combines structure and creativity to help you achieve your goals effortlessly.
 
 ### Key Features
 
 - **Task Management with Notion**  
-  Integrates with the Notion API to support adding, editing, and deleting tasks, making it easy for students to organize and prioritize their responsibilities. In addition, users are able to sync their tasks to Google Calendar to access your tasks on different platforms.
+  Feeling overwhelmed with a mountain of assignments and not sure where to start? Welcome to Umi, your ultimate task organizer! With Umi, staying on top of your tasks 
+  and schedule is a breeze. Simply enter your task, set a few dates and steps, and voilà—Umi creates a personalized schedule just for you! Need to make changes? 
+  No problem! Umi lets you effortlessly add, edit, or delete tasks whenever you need. Plus, you can access your Google Calendar events directly on our website.
+  Give Umi a try and take the stress out of your day, one task at a time!
 
-- **Personalized Music Suggestions with Spotify**  
-  Provides user login and authentication through Spotify. UMI can access user data, track the currently playing status, and suggest songs based on genre or other criteria, helping students to maintain focus during study sessions. In addition, Umi provides a Pomodoro Timer with music for study sessions and brain breaks powered by your music.
+- **Music Integration with Spotify**  
+ Umi offers a variety of features to enhance your study sessions with music! Discover your unique study music personality by taking our fun quiz. 
+  Explore all your playlists and favorite tracks on Umi's music page, seamlessly integrated with Spotify. Need structured breaks during study time? 
+  Try our Pomodoro timer on the task page! Choose to study in silence or with music, and when it’s time for a brain break, the music will pause to 
+  let you know it’s time to relax.

@@ -156,11 +156,11 @@ const port = 3000;
 app.use(cors());
 
 // Serve static files for the frontend
-app.use(express.static(path.join(__dirname, '../')));
+app.use(express.static(path.join(__dirname, '../main-pages')));
 
 // Serve CalendarSync.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../landing-page/home.html'));
+app.get('/calendarSync.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../main-pages/task-page/notion-features/CalendarSync.html'));
 });
 
 

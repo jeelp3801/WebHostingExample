@@ -27,25 +27,25 @@
             <!-- Navigation Bar -->
             <nav>
                 <ul>
-                    <li><a href="/src/landing-page/home.html" class="active"><strong>Umi</strong></a></li>
+                    <li><a href="../../landing-page/home.html" class="active"><strong>Umi</strong></a></li>
                     <li></li>
                     <li></li>
                     <li><a href="../music-page/music.html">Music</a></li>
                     <li><a href="taskPage.html">Tasks</a></li>
                     <li><a href="../faq-page/faq.html">FAQ</a></li>
-                    <li><a href="../settings-page/settings.html">Settings</a></li>
+                    <li><a href="../../redirect/redirect.html">Settings</a></li>
                 </ul>
         </nav>
         </header>
         <!-- Greeting message -->
         <section id="greeting">
-            <h2 id="message" style="font-weight: 500;"></h2>
-            <p id="date" style="font-weight: 100;"></p>
+            <h2 id="message" style="font-weight: 500; color: var(--off-white);"></h2>
+            <p id="date" style="font-weight: 100; color: var(--off-white);"></p>
         </section>
         <main>
             <div class="activity-container">
                 <div class="popup-buttons">
-                    <h1>tasks<br>for<br>the<br>week.<hr></h1>
+                    <h1 style="color: var(--off-white);">tasks<br>for<br>the<br>week.<hr></h1>
                     <button id="add-task" onclick="location.href='notion-features/notion-feature-1.html'">
                         <img src="../../images/add.png">
                     </button>
@@ -99,7 +99,7 @@
                 
                 <!--main section flip between all tasks and timer-->
                 <div id="flip-buttons-container">
-                    <h1>tasks<br>due.<br><br><br><hr></h1>
+                    <h1 style="color: var(--off-white);">tasks<br>due.<br><br><br><hr></h1>
                     <button class="flip-button" onclick="slideNext()">
                         <img id="toggleImage" src="../../images/pomodoro-icon.png" alt="Toggle Image" style="cursor: pointer;" />
                     </button>
@@ -152,7 +152,7 @@
             <!-- edit tasks popup container -->
             <div id="edit-popup" class="popup hidden">
                 <div class="popup-content">
-                    <span class="close" onclick="closeEditPopup()">
+                    <span class="close-button" onclick="closeEditPopup()">
                         X
                     </span>
                     <h2 style="color: var(--dark-gray);">Edit Tasks</h2>
@@ -165,7 +165,7 @@
 
             <div id="delete-popup" class="popup hidden">
                 <div class="popup-content">
-                    <span class="close" onclick="closeDeletePopup()">
+                    <span class="close-button" onclick="closeDeletePopup()">
                         X
                     </span>
                     <h2 style="color: var(--dark-gray);">Delete Tasks</h2>

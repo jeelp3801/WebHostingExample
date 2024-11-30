@@ -2,15 +2,14 @@ body {
     font-family: "Outfit", sans-serif;
     font-style: normal;
 
-    height: 100vh;  /* 100% of viewport height */
-    width: 100vw;   /* 100% of viewport width */
+    height: 100vh;  
+    width: 100vw;   
     margin: 0;
 
-    /* prevent scrolling */
+    
     overflow: hidden; 
 
     margin-top: 10vh;
-    color: var(--off-white);
     background-color: var(--dark-gray);
 }
 
@@ -19,7 +18,7 @@ a:hover {
 }
 
 .active {
-    color: var(--color-blue-medium);
+    color: #d6f4ff;
 }
 
 /* Main */
@@ -185,9 +184,29 @@ button {
 }
 
 /* Cancel button for popups */
-.close {
-    color: var(--gray);
+.close-button {
+    position: absolute; 
+    top: 10px;
+    left: 10px; 
+    font-size: 18px; 
+    font-weight: bold;
     cursor: pointer;
+    color: var(--dark-grey);
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: var(--dark-grey);
+    color: var(--color-blue-medium);
+    transform: scale(1.1); 
 }
 
 /* Task item flexbox for the 'delete' tasks */
@@ -221,19 +240,6 @@ button {
     background-color: rgb(229, 180, 180);
     border-color: darkred;
 }
-
-
-/* #timer {
-    width: 25vw;
-    height: 20vh;
-
-    border-radius: 30px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-
-    background-color: var(--gray);
-} */
 
 .slider-container {
     display: flex;
@@ -409,10 +415,12 @@ button {
 
     border-radius: 20px;
     border-style: none;
+
+    font-size: 1rem;
 }
 
 #timer {
-    font-size: 5rem;
+    font-size: 8rem;
     text-align: center;
     margin: 2rem;
 }
@@ -424,15 +432,25 @@ button {
     gap: 5px;
 }
 
+#session-btn {
+    color: var(--color-blue-dark);
+}
+
 #toggle-button, #reset {
     height: 3rem;
     width: 9rem;
 
     border-radius: 20px;
     border-style: none;
+
+    font-size: 1rem;
 }
 
 .container button:hover {
     background-color: var(--light-gray);
     color: var(--gray);
+}
+
+.loading-indicator {
+    font-size: x-small;
 }

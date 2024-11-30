@@ -58,21 +58,21 @@ h1 {
 
 /* Question Boxes */
 .faq-container {
-    width: 50%; /* Adjust this to control the overall width */
+    width: 50%; 
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically, if in a flex context */
+    justify-content: center; 
+    align-items: center; 
 }
 
 .question-container {
     margin-left: 2%;
     margin-right: 2%;
     display: flex;
-    flex-wrap: wrap; /* Wraps items to create a 2x3 grid effect */
+    flex-wrap: wrap; 
     gap: 10px;
-    justify-content: center; /* Centers items within the flex container */
+    justify-content: center; 
 }
 
 .question-container p {
@@ -81,15 +81,20 @@ h1 {
     border-radius: 30px;
 }
 
+#email h2 {
+    color: var(--off-white);
+}
+
 #email {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    color: var(--off-white);
+    color: var(--off-black);
 }
 
 #email textarea {
     border-radius: 10px;
+    color: var(--off-black);
 }
 
 #email button {
@@ -128,42 +133,26 @@ h1 {
     margin-left:0;
 }
 
-#footer-center h3 {
-    text-align: center;
-    padding: 0;
-    margin-bottom: 15px;
-    margin-top: 25px;
-    margin-right: 0;
-    margin-left: 400px;
+#footer-logo{
+    background-color: var(--gray);
 }
 
-#footer-center p {
-    padding: 0;
-    margin-bottom: 30px;
-    margin-top: 10px;
-    margin-right: 0;
-    margin-left:400px;
+#footer-logo img{
+    max-height: 20rem;
+    max-width: 20rem;
+
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#creators h3 {
-    color: var(--off-black);
-    padding: 0;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-right: 0;
-    margin-left: 350px;
+#footer-logo img:hover {
+    transform: scale(1.1); 
 }
 
-#creators p {
-    color: var(--off-black);
-    padding: 0;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    margin-right: 0;
-    margin-left: 350px;
+.socials-logos {
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#creators {
-    margin-bottom: 20px;
-    color: var(--gray);
+.socials-logos:hover {
+    transform: scale(1.1); 
 }

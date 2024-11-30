@@ -4,8 +4,8 @@
   "description": "Your project description",
   "main": "src/backend/server.js",
   "scripts": {
-    "start": "node notion-server.js",
-    "dev": "nodemon notion-server.js"
+    "start": "node notion-backend.js",
+    "dev": "nodemon notion-backend.js"
   },
   "dependencies": {
     "axios": "^1.7.7",

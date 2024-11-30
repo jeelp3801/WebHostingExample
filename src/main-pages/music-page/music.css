@@ -2,11 +2,10 @@ body {
     font-family: "Outfit", sans-serif;
     font-style: normal;
 
-    height: 100vh;  /* 100% of viewport height */
-    width: 100vw;   /* 100% of viewport width */
+    height: 100vh;  
+    width: 100vw;   
     margin: 0;
 
-    /* prevent scrolling */
     overflow: hidden; 
 }
 
@@ -19,7 +18,7 @@ a:hover {
 }
 
 .active {
-    color: var(--color-blue-medium);
+    color: var(--color-blue-light);
 }
 
 h1 {

@@ -13,7 +13,6 @@ const PORT = 8888;
 const CLIENT_ID = process.env.SP_CLIENT_ID;
 const CLIENT_SECRET = process.env.SP_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SP_REDIRECT_URI;
-console.log(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI); // To verify it's working
 // Serve static files from the "frontend" directory
 const path = require('path'); // Add this line
 app.use(express.static(path.join(__dirname, '../')));

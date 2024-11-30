@@ -40,8 +40,7 @@
                 +
             </button>
 
-            <button type="button" onclick="showStepPopup()" class="next-button">
-                <!-- Replace with an image of an arrow! -->
+            <button type="button" class="next-button">
                 >
             </button>
         </div>
@@ -75,15 +74,11 @@
             <button type="button" onclick="goBackToTaskPage()" class="cancel-button">X</button>
             <h3>are you satisfied</h3>
             <div id="emote-container">
-                <button type="button"  id="restart" onclick="togglePopup('popup1')">
-                    <img src="../../../images/emotes/sad-emote.png" alt="sad-emote">
-                </button>
-                <button type="button"  id="editAgain" onclick="togglePopup('popup3')">
-                    <img src="../../../images/emotes/neutral-emote.png" alt="neutral-emote">
-                </button>
-                <button type="button" id="submitTask">
-                    <img src="../../../images/emotes/happy-emote.png" alt="happy-emote">
-                </button>
+                <img src="../../../images/emotes/sad-emote.png" class="emoji-button" alt="sad-emote" id="restart" onclick="togglePopup('popup1')">
+               
+                <img src="../../../images/emotes/neutral-emote.png" class="emoji-button" alt="neutral-emote" id="editAgain" onclick="togglePopup('popup3')">
+
+                <img src="../../../images/emotes/happy-emote.png" class="emoji-button" alt="happy-emote" id="submitTask">
             </div>
             <button onclick="togglePopup('popup3')" class="back-button"><</button>
         </div>
@@ -92,6 +87,5 @@
     <script src="flatpickr-cal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script src="notion-feature-1.js"></script>
-    <!-- Flatpickr JS -->
 </body>
 </html>

@@ -82,7 +82,6 @@ async function fetchTasksForDisplay(stepId) {
         const response = await fetch("http://localhost:3000/tasks");
         if(response.ok) {
             const tasks = await response.json();
-            console.log("Fetched tasks:", tasks); 
             displayTasks(tasks);
         } else {
             console.error("Failed to load tasks.");
@@ -123,8 +122,6 @@ async function fetchTasksForDayDisplay() {
         const response = await axios.get('http://localhost:3000/api/steps/');
         const tasks = response.data;
 
-        console.log('Fetched task steps: ', tasks);
-
         // Ensure tasks is an array
         if (Array.isArray(tasks)) {
             displayTasksByDay(tasks);
@@ -161,7 +158,6 @@ function getCurrentWeekDates() {
 function displayTasksByDay(tasks) {
     try {
         const currentWeekDates = getCurrentWeekDates();  
-        console.log('Current Week Dates:', currentWeekDates);
 
         const tasksByDay = {
             sunday: [],
@@ -176,8 +172,6 @@ function displayTasksByDay(tasks) {
         tasks.forEach(task => {
             const localDateString = formatDateToLocal(task.date);
             const dayOfWeek = new Date(localDateString).toLocaleString('en-us', { timeZone: 'UTC', weekday: 'long' }).toLowerCase();
-
-            console.log(`Task Date: ${task.date}, Local Date: ${localDateString}, Day of Week: ${dayOfWeek}`);
             
             if (currentWeekDates.includes(localDateString)) {
                 if (tasksByDay[dayOfWeek]) {
@@ -186,8 +180,6 @@ function displayTasksByDay(tasks) {
             }
         });
         
-
-        console.log('Tasks by day:', tasksByDay);
         displayDayTasksInPopup('sunday', tasksByDay['sunday'], currentWeekDates[0]);
         displayDayTasksInPopup('monday', tasksByDay['monday'], currentWeekDates[1]);
         displayDayTasksInPopup('tuesday', tasksByDay['tuesday'], currentWeekDates[2]);
@@ -275,7 +267,6 @@ async function loadTasksForEdit() {
         const response = await fetch("http://localhost:3000/tasks");
         if(response.ok) {
             const tasks = await response.json();
-            console.log("Fetched tasks:", tasks); 
             displayTasksInPopup(tasks);
         } else {
             console.error("Failed to load tasks.");
@@ -438,8 +429,15 @@ async function displayTasksInPopup(tasks) {
 
 // delete task - notion api does not support deleting directly, must archive task
 async function deleteTask(taskId) {
-    const confirmation = confirm('Are you sure you want to archive this task?');
+    const taskListContainer = document.getElementById('deleteTaskList');
+    const confirmation = confirm('Are you sure you want to delete this task? Warning!! This action cannot be undone 🥲');
     if (!confirmation) return;
+
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.id = `loading-${taskId}`;
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.textContent = "Deleting task, please wait...";
+    taskListContainer.appendChild(loadingIndicator);
 
     try {
         const response = await fetch(`http://localhost:3000/api/tasks/${taskId}/archive`, {
@@ -460,61 +458,83 @@ async function deleteTask(taskId) {
         }
     } catch (error) {
         console.error("Error archiving task:", error);
-    }
+    } finally {
+      // Remove the loading indicator and enable the delete button
+      const loadingElement = document.getElementById(`loading-${taskId}`);
+      if (loadingElement) loadingElement.remove(); 
+      closeDeletePopup();
+  }
 }
 
 async function saveTask(taskId) {
-    console.log("Task ID:", taskId); 
-    if (!taskId) {
-        console.error("Task ID is undefined");
-        alert("Task ID is missing. Please try again.");
-        return;
-    }
-    const name = document.getElementById(`name-${taskId}`).value;
-    const startDate = document.getElementById(`startDate-${taskId}`).value;
-    const endDate = document.getElementById(`endDate-${taskId}`).value;
+  if (!taskId) {
+      console.error("Task ID is undefined");
+      alert("Task ID is missing. Please try again.");
+      return;
+  }
 
-    // Collect steps
-    const stepsDiv = document.getElementById(`steps-${taskId}`);
-    const stepInputs = stepsDiv.querySelectorAll('input');
-    const steps = [];
-    for (let i = 0; i < stepInputs.length; i += 2) {
-        const stepName = stepInputs[i].value;
-        const stepDate = stepInputs[i + 1].value;
-        if (stepName && stepDate) {
-            steps.push({ name: stepName, date: stepDate });
-        }
-    }
+  // Show the loading indicator
+  const saveButton = document.getElementById(`saveButton-${taskId}`);
+  saveButton.textContent = "Saving..."; 
+  saveButton.disabled = true; 
 
-    const updatedTask = {
-        name,
-        startDate,
-        endDate,
-        steps,
-    };
+  const loadingIndicator = document.createElement('div');
+  loadingIndicator.id = `loading-${taskId}`;
+  loadingIndicator.className = 'loading-indicator';
+  loadingIndicator.textContent = "Saving task, please wait...";
+  saveButton.parentNode.appendChild(loadingIndicator);
 
-    try {
-        const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedTask),
-        });
+  const name = document.getElementById(`name-${taskId}`).value;
+  const startDate = document.getElementById(`startDate-${taskId}`).value;
+  const endDate = document.getElementById(`endDate-${taskId}`).value;
 
-        if (response.ok) {
-            alert('Task updated successfully 😍');
-            fetchTasksForDisplay(); // Refresh the task list
-        } else {
-            const errorData = await response.json();
-            alert(`Failed to update task: ${errorData.error || response.statusText} 😭`);
-        }
-    } catch (error) {
-        console.error("Error updating task:", error);
-        alert("An error occurred while updating the task 🥲");
-    }
+  // Collect steps
+  const stepsDiv = document.getElementById(`steps-${taskId}`);
+  const stepInputs = stepsDiv.querySelectorAll('input');
+  const steps = [];
+  for (let i = 0; i < stepInputs.length; i += 2) {
+      const stepName = stepInputs[i].value;
+      const stepDate = stepInputs[i + 1].value;
+      if (stepName && stepDate) {
+          steps.push({ name: stepName, date: stepDate });
+      }
+  }
+
+  const updatedTask = {
+      name,
+      startDate,
+      endDate,
+      steps,
+  };
+
+  try {
+      const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+          method: 'PATCH',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedTask),
+      });
+
+      // Handle the response after task is saved
+      if (response.ok) {
+          alert('Task updated successfully 😍');
+          fetchTasksForDisplay(); // Refresh the task list
+      } else {
+          const errorData = await response.json();
+          alert(`Failed to update task: ${errorData.error || response.statusText} 😭`);
+      }
+  } catch (error) {
+      console.error("Error updating task:", error);
+      alert("An error occurred while updating the task 🥲");
+  } finally {
+      // Remove the loading indicator and enable the save button
+      const loadingElement = document.getElementById(`loading-${taskId}`);
+      if (loadingElement) loadingElement.remove(); // Remove loading indicator
+      saveButton.textContent = "Save"; // Reset the button text
+      saveButton.disabled = false; // Enable the button again
+  }
 }
-
 
 // display tasks for delete popup
 function displayTasksForDeletePopup(tasks) {
@@ -556,8 +576,6 @@ document.getElementById('toggleImage').onclick = toggleImage;
 
 // start spotify poomodoro timer here
 
-
-
 let workMinutes = 25;
 let seconds = 0;
 let isPaused = true;
@@ -574,15 +592,11 @@ const minutesDisplay = document.getElementById("minutes");
 const secondsDisplay = document.getElementById("seconds");
 const toggleButton = document.getElementById("toggle-button");
 const resetButton = document.getElementById("reset");
-//const taskInput = document.getElementById("task");
-//const taskList = document.getElementById("task-list");
-//const playMusicButton = document.getElementById("play-music");
-//const pauseMusicButton = document.getElementById("pause-music");
 const sessionBtn = document.getElementById("session-btn");
 const shortBreakBtn = document.getElementById("short-break-btn");
 const longBreakBtn = document.getElementById("long-break-btn");
 
-
+// Timer's clock display
 function updateDisplay_timer(minutes, seconds) {
   minutesDisplay.textContent = String(minutes).padStart(2, "0");
   secondsDisplay.textContent = String(seconds).padStart(2, "0");
@@ -622,9 +636,10 @@ function updateTimer() {
   }
 }
 
+//Ask for login only once.
 function handleMissingAccessToken() {
   if (!hasAskedForSpotify) {
-    const userChoice = window.confirm("Would you like to connect to Spotify?");
+    const userChoice = window.confirm("Oops! You haven't logged into Spotify yet 😭 Redirect to Music page for login?");
     if (userChoice) {
       window.location.href = "../music-page/spotify-feature1/spotify-feature1.html"; // Replace with the correct relative URL
     } else {
@@ -634,7 +649,7 @@ function handleMissingAccessToken() {
   }
 }
 
-
+//Start timer and music.
 function startTimer() {
   if (isPaused) {
     isPaused = false;
@@ -649,7 +664,7 @@ function startTimer() {
 }
 
 
-// Stop music
+// Stop timer and music
 function stopTimer() {
   isPaused = true;
   clearInterval(interval);
@@ -661,6 +676,7 @@ function stopTimer() {
   stopMusic(accessToken);
 }
 
+// Reset Timer to default settings.
 function resetTimer() {
   stopTimer();
   seconds = 0;
@@ -690,7 +706,7 @@ function validateAndSetMinutes() {
   }
 }
 
-
+// Editable Clock Behavior
 function validateAndSetSeconds() {
   const secondsValue = parseInt(secondsDisplay.textContent);
   if (!isNaN(secondsValue) && secondsValue >= 0 && secondsValue < 60) {
@@ -718,7 +734,7 @@ function changeMode(mode) {
   longBreakBtn.classList.toggle("active", mode === "long-break");
 }
 
-// Event Listener for Editable Timer (Minutes and Seconds)
+// Event Listener for Editable Timer (Minutes)
 minutesDisplay.addEventListener("input", () => {
   if (minutesDisplay.textContent.length > 2) {
     minutesDisplay.textContent = minutesDisplay.textContent.slice(0, 2); // Limit to two characters
@@ -728,6 +744,7 @@ minutesDisplay.addEventListener("input", () => {
   }
 });
 
+// Event Listener for Editable Timer (Seconds)
 secondsDisplay.addEventListener("input", () => {
   if (secondsDisplay.textContent.length > 2) {
     secondsDisplay.textContent = secondsDisplay.textContent.slice(0, 2); // Limit to two characters
@@ -778,9 +795,10 @@ secondsDisplay.addEventListener("keydown", (e) => {
   }
 });
 
+//For spotify Start Music
 async function startMusic(accessToken) {
   try {
-    const response = await fetch(`http://localhost:${PORT}/start-music?access_token=${accessToken}`, {
+    const response = await fetch(`http://localhost:8888/start-music?access_token=${accessToken}`, {
       method: 'POST',
     });
     if (response.ok) {
@@ -793,9 +811,10 @@ async function startMusic(accessToken) {
   }
 }
 
+//For spotify Stop Music
 async function stopMusic(accessToken) {
   try {
-    const response = await fetch(`http://localhost:${PORT}/stop-music?access_token=${accessToken}`, {
+    const response = await fetch(`http://localhost:8888/stop-music?access_token=${accessToken}`, {
       method: 'POST',
     });
     if (response.ok) {
@@ -816,6 +835,6 @@ toggleButton.addEventListener("click", () => {
 });
 resetButton.addEventListener("click", resetTimer);
 
-// Initialize Display
+// Initialize Display for timer.
 updateDisplay_timer(workMinutes, seconds);
 

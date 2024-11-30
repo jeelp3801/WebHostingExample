@@ -32,26 +32,33 @@ function goBackToTaskPage() {
   }
 }
 
-
-// Function to validate inputs in Popup 1 before moving to the next
-function validatePopup1() {
+function validateAndProceed() {
     const taskContainer = document.getElementById("task-container");
+    
+    
     if (taskContainer.children.length === 0) {
-        alert("Please add at least one task before proceeding.");
-        return false; // Prevent moving to next popup
+        alert("Please add at least one task before proceeding 🥹");
+        return; 
     }
-    return true; // Allow moving to next popup
+
+    
+    const taskInputs = Array.from(document.querySelectorAll('#task-container textarea'));
+    taskInputs.forEach((textarea, index) => {
+        tasks[index].name = textarea.value.trim(); 
+    });
+
+    if (tasks.some(task => !task.name)) {
+        alert("Oops! Please fill in all your tasks 🤓");
+        return; 
+    }
+
+    togglePopup("popup2");
+    displayTasksForStepEntry();
 }
 
-document.querySelector("#popup1 .next-button").addEventListener("click", function(event) {
-    if (!validatePopup1()) {
-        event.preventDefault(); // Prevent the default action (moving to next popup)
-    } else {
-        togglePopup("popup2");
-        displayTasksForStepEntry();
-    }
+document.querySelector("#popup1 .next-button").addEventListener("click", function() {
+    validateAndProceed(); 
 });
-
 
 // ===============================================
 // Popup 1 - Functions
@@ -80,6 +87,7 @@ function addTask() {
     });
 }
 
+
 function showStepPopup() {
     const taskInputs = Array.from(document.querySelectorAll('#task-container textarea'))
     taskInputs.forEach((textarea, index) => {
@@ -96,8 +104,6 @@ function displayTasksForStepEntry() {
     stepList.innerHTML = ''; // Clear the step list
 
     tasks.forEach((task, index) => {
-        console.log(`Task ${index}:`, task);
-
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-section';
         taskDiv.innerHTML = `
@@ -156,7 +162,6 @@ function captureInitialTaskData() {
     if (!hasError) {
         validatePopup2(); // Proceed to next popup if no errors
     }
-    console.log("Initial task data captureed:", tasks);
 }
 
 function addStep(taskIndex) {
@@ -202,22 +207,20 @@ function assignDates() {
         const steps = Array.from(document.querySelectorAll(`#steps-container-${index} input`))
             .map(input => ({ description: input.value }));
 
-        if (steps.length === 0 || steps.some(step => step === "")) {
-            alert(`Oops! Please enter at least one step for task: ${task.name} 🙂‍↕️`);
+        if (steps.length === 0 || steps.some(step => step.description.trim() === "")) {
+            alert(`Oops! Please enter at least one step for task: ${task.name} and fill out all step fields 🙂‍↕️`);
             return null;
         }
 
         if(steps.length === 1) {
             const midpoint = new Date((startDate.getTime() + endDate.getTime()) / 2);
             steps[0].date = midpoint.toISOString().split('T')[0];
-            console.log(`Midpoint date assigned for single step: ${steps[0].date}`);
         } else {
             const timePerStep = (endDate - startDate) / steps.length;
             steps.forEach((step, stepIndex) => {
                 // Calculate the step date using UTC to avoid local timezone shifts
                 const stepDate = new Date(startDate.getTime() + timePerStep * stepIndex);
                 step.date = new Date(stepDate.getTime()).toISOString().split('T')[0];
-                console.log('date assigned: ' + stepDate);
             });
         }
         
@@ -232,7 +235,6 @@ function assignDates() {
 
     tasks = validTasks;
 
-    console.log("Tasks with assigned dates:", tasks);
     showRearrangePopup();  // Only called if all tasks are valid
 }
 
@@ -291,7 +293,6 @@ function displayTasksForRearrangement() {
                 onChange: (selectedDates, dateStr) => {
                     task.steps[stepIndex].date = dateStr;
                     stepDiv.textContent = `${stepIndex + 1}. ${step.description} due on ${dateStr}`;
-                    console.log(`Updated date for ${step.description}: ${dateStr}`);
                 }
             });
 

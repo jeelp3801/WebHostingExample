@@ -34,7 +34,7 @@
                 <li><a href="../music-page/music.html">Music</a></li>
                 <li><a href="../task-page/taskPage.html">Tasks</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="../settings-page/settings.html">Settings</a></li>
+                <li><a href="../../redirect/redirect.html">Settings</a></li>
             </ul>
         </nav>
     </header>
@@ -54,7 +54,7 @@
                 <p>
                     How do I update tasks?
                     <br><br>
-                    You can edit tasks on the Task Page through the edit button!
+                    You can edit tasks on the Task Page through the <em>edit button!</em>
                     From there, feel free to change your task or step names and any dates to better 
                     fit your schedule!
                 </p>
@@ -67,13 +67,21 @@
                     feel free to delete any tasks you are done with!
                 </p>
             </div>
+            <div>
+                <p>
+                    How do I get my Calendar Events from Google Calendar?
+                    <br><br>
+                    You can get your events from Google Calendar on the Task Page through the 🔄 button!
+                    Sign into google and see all your events from Google Calendar!
+                </p>
+            </div>
             </div>
             <div class="question-container">
                 <div>
                     <p>
                         How do I set up a timer?
                         <br><br>
-                        Timers are set up through the task page. Just hit the ⏰ button and
+                        Timers are set up through the task page. Just hit the ⏱️ button and
                         the Task List should flip to the timer!
                     </p>
                 </div>
@@ -84,6 +92,8 @@
                         You can log into Spotify through our Music page!
                         From there feel free to get to the Now Playing page through the
                         Music page or hit the 🎶 button on the Task Page!
+                        <br><br>
+                        <small>note: you need Spotify Premium to use this feature!</small>
                     </p>
                 </div>
                 <div>
@@ -101,9 +111,7 @@
             <h2>Have more questions? Reach out to us.</h2>
             <form action="mailto:umisayshi@gmail.com" method="post" enctype="text/plain">
                 <input type="email" id="email" name="email" placeholder="Your email" required><br><br>
-                <textarea id="message" name="message" rows="10" cols="60" placeholder="Dear Umi... " required style="text-align: center;">
-
-                </textarea><br><br>
+                <textarea id="message" name="message" rows="10" cols="60" placeholder="Dear Umi... " required style="text-align: center;"></textarea><br><br>
                 
                 <button type="submit">Send to Umi!</button>
             </form>
@@ -113,14 +121,16 @@
     <!-- Footer -->
     <footer class="footer-container" id="privacy-policy">
         <div id="footer-logo">
-            <img src="/src/images/logo.png" alt="umi-logo">
+            <div id="footer-logo">
+                <img src="../../images/logo.png" alt="umi-logo" id="umi-says" onclick="location.href='umi-says/umi-says.html'">
+            </div>
         </div>
 
         <div class="footer-content">
             <h3>Privacy Policy</h3>
             <p>
-                <a href="http://umi-privacy-policy.notion.site">Privacy Policy</a> <br>
-                <a href="https://umi-privacy-policy.notion.site/Terms-of-Use-1489b65cf77380748b68cdefe087260c?pvs=4">Terms of Use</a>
+                <a href="../../landing-page/privacy-policy/privacy-policy.html">Privacy Policy</a> <br>
+                <a href="../../landing-page/privacy-policy/terms-of-use.html">Terms of Use</a>
             </p>
         </div>
         <div class="footer-content">
@@ -129,22 +139,27 @@
         </div>
         <div class="footer-content">
             <h3>Creators</h3>
-            <p>Jennifer Huang</p>
-            <p>Jeel Patel</p>
-            <p>Mouryan Puri</p>
-            <p>Jaycie Say</p>
+            <p>
+                Jennifer Huang
+                <br>
+                Jeel Patel 
+                <br>
+                Mouryan Puri
+                <br>
+                Jaycie Say
+            </p>
         </div>
         
         <div class="footer-content">
             <div class="socials-container">
                 <div>
                     <a href="https://open.spotify.com/user/31cowsjai4uwaq3jyd2mcnuxl3km" target=”_blank”>
-                        <img src="/src/images/socials-logos/spotify-logo.png" alt="spotify-logo" class="socials-logos">
+                        <img src="../../images/socials-logos/spotify-logo.png" alt="spotify-logo" class="socials-logos">
                     </a>
                 </div>
                 <div>
                     <a href="https://www.instagram.com/umisays_helloworld/" target=”_blank”>
-                        <img src="/src/images/socials-logos/instagram-logo.png" alt="instagram-logo" class="socials-logos">
+                        <img src="../../images/socials-logos/instagram-logo.png" alt="instagram-logo" class="socials-logos">
                     </a>
                 </div>
             </div>

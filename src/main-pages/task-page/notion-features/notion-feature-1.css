@@ -247,10 +247,15 @@ h3 {
     margin-top: 50px;
 }
 
-#emote-container button{
-    border-style: none;
-}
-
 #popup2, #popup3, #popup4 {
     display: none;
+}
+
+.emoji-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    margin-bottom: 100px;
+}
+
+.emoji-button:hover {
+    transform: scale(1.1); 
 }
