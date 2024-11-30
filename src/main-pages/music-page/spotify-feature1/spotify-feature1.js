@@ -310,7 +310,7 @@ async function playPlaylist(playlistUri) {
 
 async function fetchNowPlaying() {
   try {
-      const response = await fetch(`http://localhost:8888/now-playing?access_token=${accessToken}`);
+      const response = await fetch(`http://webhostingexample.onrender.com/now-playing?access_token=${accessToken}`);
       if (!response.ok) {
           throw new Error("Failed to fetch now-playing data.");
       }
