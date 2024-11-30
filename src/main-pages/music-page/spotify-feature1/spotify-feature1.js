@@ -1,6 +1,6 @@
 // -----------updated with playing toggle one------
-const CLIENT_ID = "80774347a92f4e1499c128ffc6ce3dd0";
-const REDIRECT_URI = "http://localhost:8888/callback";
+const CLIENT_ID = "3bf9bd855aca433a933463907d79b80e";
+const REDIRECT_URI = "https://webhostingexample.onrender.com/callback";
 const SCOPES = [
     "user-read-playback-state",
     "user-modify-playback-state",
@@ -254,7 +254,7 @@ startNowPlayingUpdater();
 //--------------------updated one of above
 async function fetchPlaylists() {
   try {
-      const response = await fetch(`http://localhost:8888/playlists?access_token=${accessToken}`);
+      const response = await fetch(`http://webhostingexample.onrender.com/playlists?access_token=${accessToken}`);
       if (!response.ok) throw new Error("Failed to fetch playlists.");
 
       const data = await response.json();
