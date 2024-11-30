@@ -159,8 +159,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../main-pages')));
 
 // Serve CalendarSync.html
-app.get('/calendarSync.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../main-pages/task-page/notion-features/CalendarSync.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../landing-page/home.html'));
 });
 
 
